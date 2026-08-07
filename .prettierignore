@@ -1,0 +1,9 @@
+node_modules
+.next
+build
+dist
+media
+payload-types.ts
+generated-schema.graphql
+public/media
+*.md
