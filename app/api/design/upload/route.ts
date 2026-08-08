@@ -64,6 +64,7 @@ export async function POST(request: Request) {
     });
   } catch (err) {
     console.error("[Design Upload] Error:", err);
-    return Response.json({ success: false, error: "Upload failed. Please try again." }, { status: 500 });
+    const message = err instanceof Error ? err.message : "Upload failed. Please try again.";
+    return Response.json({ success: false, error: message }, { status: 500 });
   }
 }
