@@ -38,6 +38,7 @@ export function TemplateBuilder({ documentId }: TemplateBuilderProps) {
   const [isDirty, setIsDirty] = useState(false);
   const [editingTextId, setEditingTextId] = useState<string | null>(null);
   const [historyEnabled, setHistoryEnabled] = useState(false);
+  const [categoryId, setCategoryId] = useState<string>("");
   const lastCommitted = useRef<string>("");
 
   const { push, undo, redo, canUndo, canRedo } = useHistory();
@@ -50,8 +51,30 @@ export function TemplateBuilder({ documentId }: TemplateBuilderProps) {
       setDesign(initialDesign);
       setHistoryEnabled(true);
       lastCommitted.current = JSON.stringify(initialDesign);
+      const cat = doc?.category;
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setCategoryId(typeof cat === "string" ? cat : cat?.id ?? "");
     }
-  }, [loading, initialDesign]);
+  }, [loading, initialDesign, doc]);
+
+  // Persist a category change immediately — it's metadata, not design JSON,
+  // so it doesn't need to wait on the debounced design autosave loop.
+  const handleCategoryChange = useCallback(
+    async (nextCategoryId: string) => {
+      setCategoryId(nextCategoryId);
+      if (!documentId) return;
+      try {
+        await fetch(`/api/product-templates/${documentId}`, {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ category: nextCategoryId || null }),
+        });
+      } catch {
+        // Non-fatal — the next full save (or a manual retry) will pick it up.
+      }
+    },
+    [documentId],
+  );
 
   // ── print geometry ─────────────────────────────────────────────────────
   const print = useMemo<PrintGeometry>(() => {
@@ -466,6 +489,8 @@ export function TemplateBuilder({ documentId }: TemplateBuilderProps) {
         isDirty={isDirty}
         canPublish={validation.valid}
         title={doc?.title ?? design.title}
+        categoryId={categoryId}
+        onCategoryChange={(id) => void handleCategoryChange(id)}
         onToolChange={(t) => setTool(t as typeof tool)}
         onUndo={handleUndo}
         onRedo={handleRedo}

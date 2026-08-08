@@ -59,11 +59,19 @@ function TextNode({
     const scaleY = node.scaleY();
     node.scaleX(1);
     node.scaleY(1);
+    // Resizing a text box should visually grow/shrink the text itself, not
+    // just its bounding box — otherwise dragging a corner handle looks like
+    // it "does nothing" to the letters. Scale font size by the average of
+    // both axes so diagonal drags feel natural, and corner drags on a
+    // single-axis-locked handle still nudge the size.
+    const scale = (scaleX + scaleY) / 2;
+    const nextFontSize = Math.max(6, Math.round((layer.fontSize || 16) * scale));
     onTransform({
       x: Math.round(node.x()),
       y: Math.round(node.y()),
       width: Math.max(1, Math.round(node.width() * scaleX)),
       height: Math.max(1, Math.round(node.height() * scaleY)),
+      fontSize: nextFontSize,
       rotation: Math.round(node.rotation()),
     });
   };

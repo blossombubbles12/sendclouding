@@ -504,6 +504,16 @@ transformerEnabled={false}
         </Layer>
 
         {/* Transformer */}
+        {/*
+          NOTE: Deliberately no `onTransformEnd` here. Konva fires
+          `transformend` on the Transformer itself AND on every attached
+          node (see KonvaLayer.tsx, which owns per-node onTransformEnd
+          handlers with type-specific logic, e.g. font size for text). If we
+          also resized/reset scale here, the reset would run first and the
+          per-node handler would then see scale=1 and silently discard the
+          resize — which is exactly why resizing (especially text) used to
+          appear broken.
+        */}
         <Layer>
           <Transformer
             ref={transformerRef}
@@ -511,29 +521,6 @@ transformerEnabled={false}
             keepRatio={false}
             enabledAnchors={["top-left", "top-center", "top-right", "middle-right", "bottom-right", "bottom-center", "bottom-left", "middle-left"]}
             boundBoxFunc={(oldBox, newBox) => (Math.abs(newBox.width) < 5 || Math.abs(newBox.height) < 5 ? oldBox : newBox)}
-            onTransformEnd={(e) => {
-              // Konva's Transformer can fire `transformend` with an undefined
-              // target if its attached nodes were cleared mid-gesture (e.g.
-              // the selection-sync effect below ran while the user was still
-              // dragging a resize handle). Guard against that instead of
-              // crashing the canvas.
-              const node = e.target;
-              if (!node) return;
-              const id = node.id();
-              const layer = design.layers.find((l) => l.id === id);
-              if (!layer) return;
-              const scaleX = node.scaleX();
-              const scaleY = node.scaleY();
-              node.scaleX(1);
-              node.scaleY(1);
-              props.onUpdateLayer(id, {
-                x: Math.round(node.x()),
-                y: Math.round(node.y()),
-                width: Math.max(1, Math.round(node.width() * scaleX)),
-                height: Math.max(1, Math.round(node.height() * scaleY)),
-                rotation: Math.round(node.rotation()),
-              });
-            }}
           />
         </Layer>
       </Stage>

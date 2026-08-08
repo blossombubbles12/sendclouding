@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import {
   CircleIcon,
   Grid3x3,
@@ -30,6 +31,8 @@ interface ToolbarProps {
   isDirty: boolean;
   canPublish: boolean;
   title: string;
+  categoryId: string;
+  onCategoryChange: (categoryId: string) => void;
   onToolChange: (tool: string) => void;
   onUndo: () => void;
   onRedo: () => void;
@@ -62,11 +65,29 @@ const STATUS_LABEL: Record<ToolbarProps["status"], string> = {
 
 export function Toolbar(props: ToolbarProps) {
   const { status } = props;
+  const [categories, setCategories] = useState<{ id: string; name: string }[]>([]);
+
+  useEffect(() => {
+    let cancelled = false;
+    fetch("/api/categories?limit=100&depth=0")
+      .then((res) => (res.ok ? res.json() : { docs: [] }))
+      .then((json) => {
+        if (cancelled) return;
+        const docs = (json.docs ?? []) as { id: string; name?: string }[];
+        setCategories(docs.map((d) => ({ id: d.id, name: d.name || d.id })));
+      })
+      .catch(() => {
+        // Non-fatal — category assignment is optional.
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   return (
     <header className="tb-topbar">
       <Link className="tb-back" href="/admin/collections/product-templates" title="Back to templates">
-        {"\u2190"}
+        {"\u2190"} Templates
       </Link>
       <div className="tb-brand">
         <span className="tb-brand-dot" />
@@ -79,6 +100,21 @@ export function Toolbar(props: ToolbarProps) {
         onChange={(e) => props.onTitleChange(e.target.value)}
         placeholder="Untitled template"
       />
+
+      <select
+        className="tb-select"
+        style={{ maxWidth: 180 }}
+        value={props.categoryId}
+        onChange={(e) => props.onCategoryChange(e.target.value)}
+        title="Template category"
+      >
+        <option value="">No category</option>
+        {categories.map((c) => (
+          <option key={c.id} value={c.id}>
+            {c.name}
+          </option>
+        ))}
+      </select>
 
       <div className="tb-spacer" />
 

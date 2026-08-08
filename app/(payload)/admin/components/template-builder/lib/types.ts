@@ -195,6 +195,7 @@ export interface PayloadTemplateDoc {
     editableLayerCount?: number;
   } | null;
   linkedProduct?: string | null;
+  category?: string | { id: string; name?: string } | null;
   previewImage?: null;
   thumbnail?: null;
   updatedAt?: string;
