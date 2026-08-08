@@ -3,6 +3,7 @@ import { AnnouncementBar } from "@/components/shared/announcement-bar";
 import { Header } from "@/components/shared/header";
 import { Footer } from "@/components/shared/footer";
 import { MiniCart } from "@/components/shared/mini-cart";
+import { RouteLoadingBar } from "@/components/shared/route-loading-bar";
 import { AppProviders } from "@/providers";
 import { getSiteSettings } from "@/lib/get-globals";
 
@@ -21,6 +22,7 @@ export default async function FrontendLayout({
 
   return (
     <AppProviders>
+      <RouteLoadingBar />
       <div className="flex min-h-screen flex-col">
         <AnnouncementBar />
         <Header
