@@ -80,7 +80,12 @@ export default buildConfig({
       clientUploads: false,
       collections: {
         // Applies to the `media` upload collection (logo, product, article images).
-        media: true,
+        // disablePayloadAccessControl stores the direct Vercel Blob CDN URL on the
+        // doc instead of a relative `/api/media/file/...` proxy path — required since
+        // Vercel's serverless functions are read-only and can't proxy-stream files.
+        media: {
+          disablePayloadAccessControl: true,
+        },
       },
     }),
   ],
