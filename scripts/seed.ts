@@ -773,6 +773,14 @@ async function seed() {
       type: "bag" as const,
       canvasW: 800,
       canvasH: 800,
+    },
+    {
+      title: "Die-Cut Sticker Pack Layout",
+      slug: "die-cut-sticker-layout",
+      productSlug: "die-cut-waterproof-vinyl-stickers",
+      type: "sticker" as const,
+      canvasW: 600,
+      canvasH: 600,
     }
   ];
 

@@ -305,10 +305,18 @@ export function CustomerDesigner({
   };
 
   if (!design) {
+    // This isn't a transient loading state — all data is resolved server-side
+    // before this component ever mounts. If we get here, the product simply
+    // has no design template (or design) attached, so show that clearly
+    // instead of spinning forever.
     return (
       <div className="flex flex-col items-center gap-3 py-24 text-center">
-        <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
-        <p className="text-muted-foreground">Loading template…</p>
+        <AlertTriangle className="h-8 w-8 text-muted-foreground" />
+        <p className="font-medium text-foreground">No design template is available yet for this product.</p>
+        <p className="max-w-sm text-sm text-muted-foreground">
+          {`We haven't set up a customization template for "${product.name}" yet. Please check back soon or contact us for help.`}
+        </p>
+        <LinkToBack slug={product.slug} />
       </div>
     );
   }

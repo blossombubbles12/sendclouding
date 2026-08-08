@@ -67,6 +67,14 @@ export function CanvasStage(props: CanvasProps) {
   }, [size.width, size.height]);
 
   // ── attach transformer to selection ────────────────────────────────────
+  // Only re-run when the selected ids or their locked state actually change —
+  // NOT on every `design.layers` update. That array gets a new reference on
+  // every drag/transform tick, and re-calling `tr.nodes(...)` mid-gesture
+  // interrupts Konva's active transform, which can make it fire a
+  // `transformend` event with an undefined target (see onTransformEnd below).
+  const selectionLockKey = selection
+    .map((id) => `${id}:${design.layers.find((l) => l.id === id)?.locked ? 1 : 0}`)
+    .join(",");
   useEffect(() => {
     const tr = transformerRef.current;
     const stage = stageRef.current;
@@ -81,7 +89,8 @@ export function CanvasStage(props: CanvasProps) {
       .filter((n): n is Konva.Node => Boolean(n));
     tr.nodes(nodes);
     tr.getLayer()?.batchDraw();
-  }, [selection, design.layers]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selection, selectionLockKey]);
 
   // ── zoom on wheel ──────────────────────────────────────────────────────
   const handleWheel = useCallback(
@@ -503,7 +512,13 @@ transformerEnabled={false}
             enabledAnchors={["top-left", "top-center", "top-right", "middle-right", "bottom-right", "bottom-center", "bottom-left", "middle-left"]}
             boundBoxFunc={(oldBox, newBox) => (Math.abs(newBox.width) < 5 || Math.abs(newBox.height) < 5 ? oldBox : newBox)}
             onTransformEnd={(e) => {
+              // Konva's Transformer can fire `transformend` with an undefined
+              // target if its attached nodes were cleared mid-gesture (e.g.
+              // the selection-sync effect below ran while the user was still
+              // dragging a resize handle). Guard against that instead of
+              // crashing the canvas.
               const node = e.target;
+              if (!node) return;
               const id = node.id();
               const layer = design.layers.find((l) => l.id === id);
               if (!layer) return;

@@ -2,23 +2,29 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { useDocumentInfo } from "@payloadcms/ui";
 import { TemplateBuilder } from "./TemplateBuilder";
 import "./builder.css";
 
 /**
- * Client-side entry point for Payload's custom document view. Reads the
- * document id from the route segments and renders the full visual editor.
- * When no document exists yet (the "create new" flow), shows a minimal setup
- * form that creates the template then opens the builder.
+ * Client-side entry point for Payload's custom document view.
+ *
+ * NOTE: `routeSegments` only exists on `DocumentViewServerPropsOnly` and is
+ * NOT forwarded to client components (`DocumentViewClientProps`), so it is
+ * always `undefined` here — reading it directly would make this component
+ * think there's no document id and always render the "create new" form,
+ * even when editing an existing template. Instead we read the id from
+ * Payload's `useDocumentInfo()` context, which is populated correctly for
+ * both the create and edit routes.
  */
-export function TemplateBuilderView({ routeSegments }: { routeSegments?: string[] }) {
-  const id = (routeSegments ?? []).find((seg) => seg && !["edit", "versions", "version", "create"].includes(seg) && !seg.startsWith("_") && seg !== "api");
+export function TemplateBuilderView() {
+  const { id } = useDocumentInfo();
 
   if (!id) {
     return <CreateTemplate />;
   }
 
-  return <TemplateBuilder documentId={id} />;
+  return <TemplateBuilder documentId={String(id)} />;
 }
 
 function CreateTemplate() {

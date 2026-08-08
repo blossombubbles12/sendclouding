@@ -2,7 +2,8 @@
 
 import * as React from "react";
 import { useRouter } from "next/navigation";
-import { Minus, Plus, PenTool } from "lucide-react";
+import Link from "next/link";
+import { Minus, Plus, PenTool, Zap } from "lucide-react";
 import { useCart } from "@/providers/cart-provider";
 
 interface AddToCartButtonProps {
@@ -15,7 +16,7 @@ interface AddToCartButtonProps {
     imageAlt?: string;
   };
   disabled?: boolean;
-  /** When true the button routes to the customer designer instead of adding directly. */
+  /** When true, an additional "Customize This Product" option is shown. */
   customizable?: boolean;
 }
 
@@ -25,27 +26,33 @@ export function AddToCartButton({ product, disabled = false, customizable = fals
   const [added, setAdded] = React.useState(false);
   const { addItem } = useCart();
 
-  const handleAdd = () => {
-    if (customizable) {
-      router.push(`/design/${product.slug}`);
-      return;
-    }
-    addItem({
-      id: product.id,
-      name: product.name,
-      slug: product.slug,
-      price: product.price,
-      quantity,
-      image: product.image,
-      imageAlt: product.imageAlt,
-    });
+  // Always uses the product's authoritative base price (as loaded from
+  // Payload on the server) times the selected quantity — never a
+  // customization surcharge, since this path skips the designer entirely.
+  const buildLineItem = () => ({
+    id: product.id,
+    name: product.name,
+    slug: product.slug,
+    price: product.price,
+    quantity,
+    image: product.image,
+    imageAlt: product.imageAlt,
+  });
+
+  const handleAddToCart = () => {
+    addItem(buildLineItem());
     setAdded(true);
     setTimeout(() => setAdded(false), 2000);
   };
 
+  const handleBuyNow = () => {
+    addItem(buildLineItem());
+    router.push("/checkout");
+  };
+
   return (
-    <div className="flex flex-wrap items-center gap-4">
-      {!customizable && (
+    <div className="flex flex-col gap-4">
+      <div className="flex flex-wrap items-center gap-4">
         <div className="flex items-center rounded-full border border-border">
           <button
             type="button"
@@ -69,17 +76,36 @@ export function AddToCartButton({ product, disabled = false, customizable = fals
             <Plus className="h-4 w-4" />
           </button>
         </div>
-      )}
 
-      <button
-        type="button"
-        onClick={handleAdd}
-        disabled={disabled}
-        className="inline-flex h-11 items-center gap-2 rounded-full bg-secondary px-8 text-sm font-semibold text-white transition-all duration-300 hover:bg-secondary-600 active:scale-[0.97] disabled:cursor-not-allowed disabled:opacity-50"
-      >
-        <PenTool className="h-4 w-4" />
-        {disabled ? "Out of Stock" : customizable ? "Customize Now" : added ? "Added" : "Add to Cart"}
-      </button>
+        <button
+          type="button"
+          onClick={handleAddToCart}
+          disabled={disabled}
+          className="inline-flex h-11 items-center gap-2 rounded-full border border-secondary px-8 text-sm font-semibold text-secondary transition-all duration-300 hover:bg-secondary/10 active:scale-[0.97] disabled:cursor-not-allowed disabled:opacity-50"
+        >
+          {disabled ? "Out of Stock" : added ? "Added" : "Add to Cart"}
+        </button>
+
+        <button
+          type="button"
+          onClick={handleBuyNow}
+          disabled={disabled}
+          className="inline-flex h-11 items-center gap-2 rounded-full bg-secondary px-8 text-sm font-semibold text-white transition-all duration-300 hover:bg-secondary-600 active:scale-[0.97] disabled:cursor-not-allowed disabled:opacity-50"
+        >
+          <Zap className="h-4 w-4" />
+          {disabled ? "Out of Stock" : "Buy Now"}
+        </button>
+      </div>
+
+      {customizable && (
+        <Link
+          href={`/design/${product.slug}`}
+          className="inline-flex h-11 w-fit items-center gap-2 rounded-full border border-dashed border-accent px-8 text-sm font-semibold text-accent-700 transition-all duration-300 hover:bg-accent/10 active:scale-[0.97]"
+        >
+          <PenTool className="h-4 w-4" />
+          Customize This Product
+        </Link>
+      )}
     </div>
   );
 }
