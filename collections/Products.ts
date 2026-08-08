@@ -531,6 +531,57 @@ export const Products: CollectionConfig = {
         }
       },
     ],
+
+    beforeDelete: [
+      async ({ req, id }) => {
+        const payload = req.payload;
+
+        // Orders are permanent business/financial records — never delete
+        // them or silently detach them. Block the delete with a clear,
+        // actionable message instead (previously this crashed with a raw
+        // 500: the DB tries to null out orders_items.product_id on delete,
+        // but that column is required/NOT NULL).
+        const orders = await payload.find({
+          collection: "orders",
+          where: { "items.product": { equals: id } },
+          limit: 1,
+          depth: 0,
+          overrideAccess: true,
+        });
+        if (orders.totalDocs > 0) {
+          throw new Error(
+            "This product can't be deleted because it has existing orders referencing it. Set its status to Inactive instead to hide it from customers while preserving order history."
+          );
+        }
+
+        // Saved customer designs and design templates are linked to a
+        // product via a required (NOT NULL) relationship, so they can't be
+        // "unlinked" on delete either. Since we've already confirmed above
+        // that no order uses this product (so none of these designs were
+        // ever placed), it's safe to clean them up here.
+        const designs = await payload.find({
+          collection: "designs",
+          where: { product: { equals: id } },
+          limit: 1000,
+          depth: 0,
+          overrideAccess: true,
+        });
+        for (const design of designs.docs) {
+          await payload.delete({ collection: "designs", id: design.id, overrideAccess: true });
+        }
+
+        const templates = await payload.find({
+          collection: "product-templates",
+          where: { linkedProduct: { equals: id } },
+          limit: 1000,
+          depth: 0,
+          overrideAccess: true,
+        });
+        for (const template of templates.docs) {
+          await payload.delete({ collection: "product-templates", id: template.id, overrideAccess: true });
+        }
+      },
+    ],
   },
   timestamps: true,
 };
