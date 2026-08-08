@@ -151,20 +151,53 @@ export const DesignCanvas = forwardRef<PreviewHandle, DesignCanvasProps>(functio
   ref,
 ) {
   const stageRef = useRef<Konva.Stage>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [containerWidth, setContainerWidth] = React.useState(design.width);
+
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+    const observer = new ResizeObserver((entries) => {
+      const width = entries[0]?.contentRect.width;
+      if (width && width > 0) setContainerWidth(width);
+    });
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  // Scale factor mapping the design's native coordinate space (fixed px, e.g.
+  // 1200x800) down to whatever width the container actually has on screen.
+  // Applying this as a uniform Stage scale — rather than relying on fixed
+  // pixel fontSize/layer values — keeps text, images, and layout proportional
+  // and non-overlapping across mobile, tablet, and desktop viewports.
+  const displayScale = Math.min(1, containerWidth / design.width) || 1;
 
   useImperativeHandle(ref, () => ({
     toDataURL: (scale = 0.5) => {
       const stage = stageRef.current;
       if (!stage) return "";
-      return stage.toDataURL({ pixelRatio: scale, mimeType: "image/png", quality: 0.92 });
+      // Compensate for the on-screen display scale so exports stay full
+      // resolution regardless of how small the stage is currently rendered.
+      return stage.toDataURL({ pixelRatio: scale / displayScale, mimeType: "image/png", quality: 0.92 });
     },
   }));
 
   const sorted = useMemo(() => [...design.layers].sort((a, b) => a.zIndex - b.zIndex), [design.layers]);
 
   return (
-    <div style={{ aspectRatio: `${design.width} / ${design.height}` }} className="flex items-center justify-center overflow-hidden rounded-xl border border-border bg-white">
-      <Stage ref={stageRef} width={design.width} height={design.height} listening={false}>
+    <div
+      ref={containerRef}
+      style={{ aspectRatio: `${design.width} / ${design.height}` }}
+      className="flex items-center justify-center overflow-hidden rounded-xl border border-border bg-white"
+    >
+      <Stage
+        ref={stageRef}
+        width={design.width * displayScale}
+        height={design.height * displayScale}
+        scaleX={displayScale}
+        scaleY={displayScale}
+        listening={false}
+      >
         <Layer listening={false}>
           <Rect x={0} y={0} width={design.width} height={design.height} fill={design.canvasColor} />
           {sorted.map((layer) => (
