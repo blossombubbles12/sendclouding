@@ -12,7 +12,7 @@ export const ProductTemplates: CollectionConfig = {
   slug: "product-templates",
   admin: {
     useAsTitle: "title",
-    group: "Templates",
+    group: "Catalog",
     defaultColumns: [
       "title",
       "linkedProduct",
