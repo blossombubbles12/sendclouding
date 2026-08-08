@@ -58,7 +58,7 @@ export default buildConfig({
         Logo: "/components/graphics/Logo#Logo",
         Icon: "/components/graphics/Icon#Icon",
       },
-      Nav: "/components/graphics/Nav#Nav",
+      beforeNavLinks: ["/components/graphics/Nav#Nav"],
       beforeDashboard: ["/components/dashboard/BeforeDashboard#default"],
     },
     importMap: {

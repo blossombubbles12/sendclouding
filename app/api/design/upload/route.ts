@@ -40,6 +40,7 @@ export async function POST(request: Request) {
     const payload = await getPayload({ config });
     const media = await payload.create({
       collection: "media",
+      overrideAccess: true,
       data: { alt },
       file: {
         data: buffer,
