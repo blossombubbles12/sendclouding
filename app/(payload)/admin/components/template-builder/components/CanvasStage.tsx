@@ -187,6 +187,17 @@ export function CanvasStage(props: CanvasProps) {
       const stage = stageRef.current;
       if (!stage) return;
 
+      // Clicks on the Transformer's own resize/rotate handles land here too
+      // (they're Konva.Shape instances with no custom `id`). If we treat
+      // that as an "empty canvas" click below, it deselects the layer —
+      // detaching the Transformer — the instant the user presses down on a
+      // handle, which aborts the resize/rotate drag before it can start.
+      // Bail out early so those clicks fall straight through to Konva's own
+      // Transformer drag handling instead.
+      if (e.target.getParent() instanceof Konva.Transformer) {
+        return;
+      }
+
       const isShape = e.target instanceof Konva.Shape && e.target.id() !== "" && e.target.id() !== "canvas-bg";
 
       // Begin drawing

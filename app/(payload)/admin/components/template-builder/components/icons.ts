@@ -34,6 +34,7 @@ import {
   Search,
   X,
   ChevronDown,
+  Upload,
 } from "lucide-react";
 
 export {
@@ -70,4 +71,5 @@ export {
   Search,
   X,
   ChevronDown,
+  Upload,
 };
