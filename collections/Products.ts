@@ -396,7 +396,6 @@ export const Products: CollectionConfig = {
             {
               name: "allowedImageFormats",
               type: "select",
-              dbName: "allowedImgFormats",
               hasMany: true,
               label: "Allowed Image Formats",
               defaultValue: ["png", "jpg", "jpeg", "svg", "pdf"],
