@@ -282,7 +282,7 @@ export function Header({
           mobileOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr] border-transparent"
         )}
       >
-        <div className="min-h-0 overflow-hidden">
+        <div className="min-h-0 max-h-[calc(100dvh-4.25rem)] overflow-y-auto overscroll-contain">
           <nav className="flex flex-col gap-1 px-4 py-4" aria-label="Mobile">
             {primaryNav.map((item) =>
               item.label === "Services" ? (
