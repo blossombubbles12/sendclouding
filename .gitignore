@@ -41,6 +41,9 @@ yarn-error.log*
 /payload-types.ts
 /generated-schema.graphql
 
+# build helpers
+# (empty-module.cjs / empty-module.css are intentionally committed — required by webpack build)
+
 # vercel
 .vercel
 
