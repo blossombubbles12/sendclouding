@@ -12,7 +12,13 @@ export const metadata: Metadata = {
   },
 };
 
-export default function ShipPage() {
+export default async function ShipPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ city?: string; region?: string }>;
+}) {
+  const sp = await searchParams;
+
   return (
     <>
       <SubpageHero
@@ -22,7 +28,7 @@ export default function ShipPage() {
       />
       <section className="bg-white py-16 sm:py-24">
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-          <ShipForm />
+          <ShipForm initialCity={sp.city ?? ""} initialRegion={sp.region ?? ""} />
         </div>
       </section>
     </>

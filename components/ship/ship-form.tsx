@@ -18,7 +18,7 @@ interface QuoteResult {
   zone: string;
 }
 
-export function ShipForm() {
+export function ShipForm({ initialCity = "", initialRegion = "" }: { initialCity?: string; initialRegion?: string }) {
   const router = useRouter();
 
   const [senderName, setSenderName] = React.useState("");
@@ -36,8 +36,8 @@ export function ShipForm() {
   const [packageDeclaredValue, setPackageDeclaredValue] = React.useState("");
   const [packageIsFragile, setPackageIsFragile] = React.useState(false);
 
-  const [deliveryCity, setDeliveryCity] = React.useState("");
-  const [deliveryRegion, setDeliveryRegion] = React.useState("");
+  const [deliveryCity, setDeliveryCity] = React.useState(initialCity);
+  const [deliveryRegion, setDeliveryRegion] = React.useState(initialRegion);
 
   const [quote, setQuote] = React.useState<QuoteResult | null>(null);
   const [selectedMethod, setSelectedMethod] = React.useState<string>("");
