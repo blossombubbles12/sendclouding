@@ -27,11 +27,12 @@ const columns = [
   {
     title: "Services",
     links: [
-      { label: "Local Delivery", href: "/services?type=local" },
-      { label: "Express Delivery", href: "/services?type=express" },
-      { label: "Same-Day Delivery", href: "/services?type=same-day" },
-      { label: "Nationwide Delivery", href: "/services?type=nationwide" },
-      { label: "Business Solutions", href: "/services?type=business" },
+      { label: "Same-Day Delivery", href: "/services/same-day-delivery" },
+      { label: "Express Delivery", href: "/services/express-delivery" },
+      { label: "Nationwide Delivery", href: "/services/nationwide-delivery" },
+      { label: "International Shipping", href: "/services/international-shipping" },
+      { label: "E-commerce Shipping", href: "/services/ecommerce-shipping" },
+      { label: "Bulk Shipping", href: "/services/bulk-shipping" },
     ],
   },
   {

@@ -40,6 +40,7 @@ export const metadata: Metadata = {
 
 interface Service {
   type: string;
+  slug: string;
   icon: LucideIcon;
   title: string;
   description: string;
@@ -50,6 +51,7 @@ interface Service {
 const services: Service[] = [
   {
     type: "same-day",
+    slug: "same-day-delivery",
     icon: Truck,
     title: "Same-Day Express",
     description:
@@ -59,6 +61,7 @@ const services: Service[] = [
   },
   {
     type: "express",
+    slug: "express-delivery",
     icon: PackageCheck,
     title: "Next-Day Nationwide",
     description:
@@ -68,6 +71,7 @@ const services: Service[] = [
   },
   {
     type: "international",
+    slug: "international-shipping",
     icon: Plane,
     title: "International Shipping",
     description:
@@ -77,6 +81,7 @@ const services: Service[] = [
   },
   {
     type: "ecommerce",
+    slug: "ecommerce-shipping",
     icon: Boxes,
     title: "E-commerce Fulfilment",
     description:
@@ -86,6 +91,7 @@ const services: Service[] = [
   },
   {
     type: "returns",
+    slug: "returns-logistics",
     icon: RefreshCw,
     title: "Returns & Reverse Logistics",
     description:
@@ -95,6 +101,7 @@ const services: Service[] = [
   },
   {
     type: "freight",
+    slug: "freight-pallet",
     icon: ContainerIcon,
     title: "Freight & Pallet",
     description:
@@ -271,10 +278,10 @@ function ServiceCard({ service, index }: { service: Service; index: number }) {
         </ul>
         <div className="mt-auto pt-9">
           <Link
-            href="/quote"
+            href={`/services/${service.slug}`}
             className="group/btn inline-flex items-center gap-3 rounded-full bg-primary-950 py-1.5 pl-5 pr-1.5 text-sm font-medium text-white transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:-translate-y-0.5 active:scale-[0.97]"
           >
-            Book this service
+            View service
             <span className="flex h-7 w-7 items-center justify-center rounded-full bg-secondary text-white transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5">
               <ArrowUpRight className="h-4 w-4" strokeWidth={2} />
             </span>
