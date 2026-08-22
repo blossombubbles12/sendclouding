@@ -17,7 +17,6 @@
     "clean": "rimraf .next media payload-types.ts generated-schema.graphql"
   },
   "dependencies": {
-    "@next/swc-win32-x64-msvc": "^16.3.0",
     "@payloadcms/db-postgres": "^3.87.0",
     "@payloadcms/email-nodemailer": "^3.87.0",
     "@payloadcms/next": "^3.87.0",
