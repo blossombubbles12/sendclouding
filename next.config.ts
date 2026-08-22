@@ -4,6 +4,7 @@ import path from "path";
 
 const nextConfig: NextConfig = {
   reactCompiler: false,
+  serverExternalPackages: ["@next/env"],
   images: {
     remotePatterns: [
       {
