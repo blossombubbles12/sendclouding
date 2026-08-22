@@ -14,7 +14,7 @@ export function CompanyOverview() {
           <div className="hover-lift relative aspect-[4/3] overflow-hidden rounded-3xl bg-white">
             <Image
               src="/homepage1.png"
-              alt="Signages.ng printing facility"
+              alt="Send Clouding printing facility"
               fill
               sizes="(min-width: 1024px) 50vw, 100vw"
               className="object-cover"
@@ -29,7 +29,7 @@ export function CompanyOverview() {
             We make your brand visible
           </h2>
           <p className="text-body mt-6 text-lg">
-            Signages.ng was born from a simple belief: every business deserves
+            Send Clouding was born from a simple belief: every business deserves
             access to premium printing and signage. From startups to corporations, we
             provide the tools and quality to make your brand impossible to ignore.
           </p>

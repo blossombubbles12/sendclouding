@@ -123,7 +123,7 @@ export function FAQContent() {
                 className="border-white/30 bg-transparent text-white hover:bg-white/10"
                 asChild
               >
-                <a href="mailto:hello@signages.ng">
+                <a href="mailto:hello@sendclouding.com">
                   <Mail className="mr-2 h-4 w-4" aria-hidden="true" /> Email Us
                 </a>
               </Button>

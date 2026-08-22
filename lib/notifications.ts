@@ -29,14 +29,14 @@ export function orderConfirmationEmail(data: {
   return {
     subject: `Order Confirmed — ${data.orderNumber}`,
     html: `<!DOCTYPE html><html><head><meta charset="utf-8"></head><body style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;padding:20px;color:#0F172A">
-      <div style="text-align:center;padding:30px 0"><h1 style="color:#063E9B;margin:0">AquaBest Brands</h1></div>
+      <div style="text-align:center;padding:30px 0"><h1 style="color:#063E9B;margin:0">Send Clouding</h1></div>
       <h2 style="color:#0F172A">Order Confirmation</h2>
       <p>Hi ${data.customerName},</p>
       <p>Thank you for your order! Your order <strong>${data.orderNumber}</strong> has been confirmed and is being processed.</p>
       <table style="width:100%;margin:20px 0;border-collapse:collapse">${itemRows}</table>
       <p style="font-size:18px;font-weight:bold;text-align:right">Total: ${data.orderTotal}</p>
       <div style="text-align:center;margin:30px 0"><a href="${data.orderUrl}" style="background:#063E9B;color:white;padding:12px 30px;border-radius:50px;text-decoration:none;font-weight:bold">View Your Order</a></div>
-      <p style="color:#64748B;font-size:13px">Questions? Contact hello@aquabestbrands.com</p>
+      <p style="color:#64748B;font-size:13px">Questions? Contact hello@sendclouding.com</p>
     </body></html>`,
   };
 }
@@ -62,12 +62,12 @@ export function orderStatusEmail(data: {
   return {
     subject: `Order ${data.orderNumber} — ${data.status.charAt(0).toUpperCase() + data.status.slice(1)}`,
     html: `<!DOCTYPE html><html><head><meta charset="utf-8"></head><body style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;padding:20px;color:#0F172A">
-      <div style="text-align:center;padding:30px 0"><h1 style="color:#063E9B;margin:0">AquaBest Brands</h1></div>
+      <div style="text-align:center;padding:30px 0"><h1 style="color:#063E9B;margin:0">Send Clouding</h1></div>
       <h2>Order Update</h2>
       <p>Hi ${data.customerName},</p>
       <p>Your order <strong>${data.orderNumber}</strong> ${msg}.</p>
       <div style="text-align:center;margin:30px 0"><a href="${data.orderUrl}" style="background:#063E9B;color:white;padding:12px 30px;border-radius:50px;text-decoration:none;font-weight:bold">View Order Details</a></div>
-      <p style="color:#64748B;font-size:13px">Questions? Contact hello@aquabestbrands.com</p>
+      <p style="color:#64748B;font-size:13px">Questions? Contact hello@sendclouding.com</p>
     </body></html>`,
   };
 }

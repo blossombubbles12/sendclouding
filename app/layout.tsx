@@ -21,41 +21,43 @@ const importMap = importMapObject.importMap;
 
 export const metadata: Metadata = {
   title: {
-    default: "Signages.ng — Design, Personalize & Print Premium Signage",
-    template: "%s | Signages.ng",
+    default: "Send Clouding — Courier & Logistics in the Netherlands & UK",
+    template: "%s | Send Clouding",
   },
   description:
-    "Signages.ng is Europe's premium print-on-demand platform. Design and customize banners, business cards, signs, promotional materials, and more. Create your design, we print and deliver.",
+    "Send Clouding is a modern courier and logistics platform for the Netherlands and the UK. Ship same-day, track every delivery live, and manage freight, fulfilment and returns with confidence.",
   keywords: [
-    "signage",
-    "printing",
-    "banners",
-    "business cards",
-    "custom printing",
-    "print on demand",
-    "signages",
-    "europe printing",
-    "design and print",
-    "corporate printing",
-    "signage europe",
-    "custom signs",
+    "courier",
+    "logistics",
+    "same-day delivery",
+    "next-day delivery",
+    "express delivery",
+    "shipping",
+    "freight",
+    "parcel delivery",
+    "e-commerce fulfilment",
+    "package tracking",
+    "netherlands",
+    "united kingdom",
+    "amsterdam",
+    "london",
   ],
-  authors: [{ name: "Signages.ng" }],
-  creator: "Signages.ng",
+  authors: [{ name: "Send Clouding" }],
+  creator: "Send Clouding",
   openGraph: {
     type: "website",
     locale: "en_GB",
-    siteName: "Signages.ng",
-    title: "Signages.ng — Design, Personalize & Print Premium Signage in Europe",
+    siteName: "Send Clouding",
+    title: "Send Clouding — Courier & Logistics in the Netherlands & UK",
     description:
-      "Create custom banners, signs, business cards, and promotional materials. Design online, we print and deliver anywhere in the Netherlands and the UK.",
+      "Same-day, next-day and international courier delivery across the Netherlands and the UK, with live tracking on every shipment.",
     images: [{ url: "/og-image.jpg", width: 1200, height: 630 }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Signages.ng — Premium Print-on-Demand",
+    title: "Send Clouding — Courier & Logistics",
     description:
-      "Design and customize your signage. Premium quality printing and delivery across the Netherlands and the UK.",
+      "Courier and logistics services across the Netherlands and the UK. Ship, track and deliver with confidence.",
     images: ["/og-image.jpg"],
   },
   robots: {
@@ -63,9 +65,9 @@ export const metadata: Metadata = {
     follow: true,
   },
   icons: {
-    icon: "/favicon.png",
-    shortcut: "/favicon.png",
-    apple: "/favicon.png",
+    icon: "/sendclouding-logo.svg",
+    shortcut: "/sendclouding-logo.svg",
+    apple: "/sendclouding-logo.svg",
   },
 };
 

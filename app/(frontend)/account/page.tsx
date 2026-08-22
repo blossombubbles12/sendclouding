@@ -11,7 +11,7 @@ export default function DashboardPage() {
       <h1 className="text-section-heading text-foreground">
         Hello, {user?.name?.split(" ")[0] || "there"}
       </h1>
-      <p className="text-body mt-2">Welcome to your Signages.ng dashboard.</p>
+      <p className="text-body mt-2">Welcome to your Send Clouding dashboard.</p>
 
       <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
         <Link

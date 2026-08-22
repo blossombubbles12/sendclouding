@@ -2040,7 +2040,7 @@ export interface SeoSetting {
   id: number;
   defaultTitle?: string | null;
   /**
-   * Use %s for the page title. Example: %s | AquaBest Brands
+   * Use %s for the page title. Example: %s | Send Clouding
    */
   titleTemplate?: string | null;
   defaultDescription?: string | null;

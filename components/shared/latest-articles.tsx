@@ -9,20 +9,20 @@ import { Reveal } from "@/components/motion/reveal";
 
 const articles = [
   {
-    title: "How We Purify Every Drop: A Look Inside Our Facility",
-    excerpt: "Take a behind-the-scenes look at our multi-stage filtration and quality control process.",
+    title: "How Same-Day Metro Delivery Actually Works",
+    excerpt: "A behind-the-scenes look at our sorting hubs and the courier network that gets parcels across a city in hours.",
     date: "July 2026",
-    category: "Water Production",
+    category: "Operations",
   },
   {
-    title: "5 Ways to Keep Pastries Fresh Longer",
-    excerpt: "Our bakery team shares practical tips for storing bread, cakes, and pastries at home.",
+    title: "5 Packaging Mistakes That Delay Deliveries",
+    excerpt: "Our couriers share the most common packaging mistakes — and how to avoid them.",
     date: "June 2026",
-    category: "Bakeries",
+    category: "Shipping Guide",
   },
   {
-    title: "AquaBest Expands Distribution to 3 New Cities",
-    excerpt: "We're growing! Here's what our expansion means for availability near you.",
+    title: "Send Clouding Expands Coverage to 3 New Cities",
+    excerpt: "We're growing! Here's what our expansion means for delivery times near you.",
     date: "May 2026",
     category: "Company News",
   },

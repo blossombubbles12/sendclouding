@@ -73,7 +73,7 @@ export default async function NewsPage({
             <SectionHeading
               eyebrow="Newsroom"
               title="News & Articles"
-              description="Insights, stories, and updates from AquaBest Brands — quality water, bakery, and everything in between."
+              description="Insights, stories, and updates from Send Clouding — logistics, courier technology, and everything in between."
             />
           </div>
         </Container>

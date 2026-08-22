@@ -103,7 +103,7 @@ export function getPostExcerpt(post: PayloadPost): string {
 }
 
 export function getPostAuthorName(post: PayloadPost): string {
-  return post.author?.name?.trim() || "AquaBest Brands";
+  return post.author?.name?.trim() || "Send Clouding";
 }
 
 export function toPostCardData(post: PayloadPost): PostCardData {

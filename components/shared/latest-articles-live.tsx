@@ -66,7 +66,7 @@ export async function LatestArticlesLive() {
               </div>
               <div className="flex flex-1 flex-col gap-2 p-6">
                 <span className="text-caption uppercase tracking-wide text-accent-700">
-                  {article.category?.name ?? "AquaBest News"}
+                  {article.category?.name ?? "Send Clouding News"}
                 </span>
                 <h3 className="text-card-title text-foreground transition-colors group-hover:text-primary">
                   {article.title}

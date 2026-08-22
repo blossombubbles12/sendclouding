@@ -524,7 +524,7 @@ export const Products: CollectionConfig = {
               threshold,
               productUrl: `${baseUrl}/admin/collections/products/${product.id}`,
             });
-            await sendEmail("admin@aquabestbrands.com", subject, html);
+            await sendEmail("admin@sendclouding.com", subject, html);
           }
         } catch {
           // email is best-effort; do not fail the save

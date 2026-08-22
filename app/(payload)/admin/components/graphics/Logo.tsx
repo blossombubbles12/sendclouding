@@ -16,7 +16,7 @@ export function Logo() {
       }}
     >
       {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src="/logo.jpg.png" alt="Signages" style={{ height: "40px", width: "auto" }} />
+      <img src="/sendclouding-logo.svg" alt="Send Clouding" style={{ height: "40px", width: "auto" }} />
     </div>
   );
 }

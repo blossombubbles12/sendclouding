@@ -36,8 +36,8 @@ const smtpConfigured = Boolean(process.env.SMTP_HOST);
 
 const email = smtpConfigured
   ? nodemailerAdapter({
-      defaultFromAddress: process.env.SMTP_FROM_ADDRESS || "noreply@aquabestbrands.com",
-      defaultFromName: process.env.SMTP_FROM_NAME || "AquaBest Brands",
+      defaultFromAddress: process.env.SMTP_FROM_ADDRESS || "noreply@sendclouding.com",
+      defaultFromName: process.env.SMTP_FROM_NAME || "Send Clouding",
       transportOptions: {
         host: process.env.SMTP_HOST || "",
         port: parseInt(process.env.SMTP_PORT || "587"),
@@ -53,8 +53,8 @@ export default buildConfig({
   admin: {
     user: Users.slug,
     meta: {
-      titleSuffix: " - AquaBest Admin",
-      description: "AquaBest Brands business management platform.",
+      titleSuffix: " - Send Clouding Admin",
+      description: "Send Clouding business management platform.",
     },
     components: {
       graphics: {

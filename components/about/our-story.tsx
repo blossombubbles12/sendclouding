@@ -17,7 +17,7 @@ export function OurStory() {
           <div className="hover-lift relative aspect-[4/3] overflow-hidden rounded-[2rem] shadow-lg">
             <Image
               src="/signageslide1.png"
-              alt="Signages.ng printing facility"
+              alt="Send Clouding printing facility"
               fill
               sizes="(max-width: 1024px) 100vw, 50vw"
               className="object-cover"
@@ -37,7 +37,7 @@ export function OurStory() {
             From a dream to Europe's leading print platform
           </h2>
           <p className="text-body mt-6 text-lg">
-            Signages.ng began with a simple belief: every business, no matter
+            Send Clouding began with a simple belief: every business, no matter
             its size, deserves access to professional-quality printing and signage. What
             started as a small print shop has grown into a full-service print-on-demand
             platform trusted by thousands of businesses across the Netherlands and the UK.

@@ -64,7 +64,7 @@ export async function getFaviconUrl(
   const favicon = settings?.favicon;
   return (
     (await resolveMediaUrl(favicon as number | PopulatedMedia | null | undefined)) ??
-    "/favicon.png"
+    "/sendclouding-logo.svg"
   );
 }
 
@@ -74,7 +74,7 @@ export async function getLogoUrl(
   const logo = settings?.logo;
   return (
     (await resolveMediaUrl(logo as number | PopulatedMedia | null | undefined)) ??
-    "/logo.jpg.png"
+    "/sendclouding-logo.svg"
   );
 }
 

@@ -11,13 +11,13 @@ import { Reveal } from "@/components/motion/reveal";
 const iconClass = "h-16 w-16 text-accent/70";
 
 const products: ProductCardData[] = [
-  { id: "1", name: "AquaBest Pure Water 75cl", category: "Bottled Water", slug: "aquabest-pure-water-75cl", price: 250, image: null },
-  { id: "2", name: "AquaBest Table Water 1.5L", category: "Bottled Water", slug: "aquabest-table-water-1-5l", price: 600, image: null },
-  { id: "3", name: "AquaBest Sachet Water (Pack)", category: "Sachet Water", slug: "aquabest-sachet-water-20", price: 200, image: null },
+  { id: "1", name: "Send Clouding Pure Water 75cl", category: "Bottled Water", slug: "aquabest-pure-water-75cl", price: 250, image: null },
+  { id: "2", name: "Send Clouding Table Water 1.5L", category: "Bottled Water", slug: "aquabest-table-water-1-5l", price: 600, image: null },
+  { id: "3", name: "Send Clouding Sachet Water (Pack)", category: "Sachet Water", slug: "aquabest-sachet-water-20", price: 200, image: null },
   { id: "4", name: "Golden Crust Butter Bread", category: "Bakeries", slug: "golden-crust-butter-bread", price: 1500, image: null },
   { id: "5", name: "Classic Meat Pie (Box of 6)", category: "Bakeries", slug: "classic-meat-pie-box-6", price: 3000, image: null },
   { id: "6", name: "Chocolate Chip Muffins", category: "Bakeries", slug: "chocolate-chip-muffins-4", price: 2200, image: null },
-  { id: "7", name: "AquaBest Dispenser Bottle 18.9L", category: "Dispenser Water", slug: "aquabest-dispenser-bottle-18-9l", price: 1800, image: null },
+  { id: "7", name: "Send Clouding Dispenser Bottle 18.9L", category: "Dispenser Water", slug: "aquabest-dispenser-bottle-18-9l", price: 1800, image: null },
   { id: "8", name: "Vanilla Sponge Cake", category: "Bakeries", slug: "vanilla-celebration-cake", price: 8500, image: null },
 ];
 

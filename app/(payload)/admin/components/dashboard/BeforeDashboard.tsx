@@ -176,7 +176,7 @@ export default async function BeforeDashboard(props: ServerProps) {
         <div>
           <h2 className="ab-dashboard__title">Welcome back 👋</h2>
           <p className="ab-dashboard__subtitle">
-            Here&apos;s what&apos;s happening across AquaBest Brands today.
+            Here&apos;s what&apos;s happening across Send Clouding today.
           </p>
         </div>
       </div>

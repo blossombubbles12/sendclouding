@@ -89,7 +89,7 @@ export function ProductionStandards() {
           <div className="hover-lift relative aspect-[4/5] overflow-hidden rounded-[2rem] shadow-lg">
             <Image
               src="/signageslide3.png"
-              alt="Signages.ng printing facility"
+              alt="Send Clouding printing facility"
               fill
               sizes="(max-width: 1024px) 100vw, 50vw"
               className="object-cover"

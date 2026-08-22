@@ -57,7 +57,7 @@ export function ContactInfo({
     {
       icon: Mail,
       title: "Email Us",
-      value: email || "info@signages.ng",
+      value: email || "info@sendclouding.com",
       note: "We reply within a few hours",
       href: email ? `mailto:${email}` : undefined,
     },

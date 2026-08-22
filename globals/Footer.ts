@@ -13,7 +13,7 @@ export const Footer: GlobalConfig = {
       name: "description",
       type: "textarea",
       label: "Footer Description",
-      defaultValue: "AquaBest Brands - Premium water and pastry products for a healthier lifestyle. Quality you can trust, taste you'll love.",
+      defaultValue: "Modern logistics technology platform. Ship packages, track shipments in real-time, and manage deliveries with confidence.",
     },
     {
       name: "columns",
@@ -73,7 +73,7 @@ export const Footer: GlobalConfig = {
       name: "copyright",
       type: "text",
       label: "Copyright Text",
-      defaultValue: "© {year} AquaBest Brands. All rights reserved.",
+      defaultValue: "© {year} Send Clouding. All rights reserved.",
     },
   ],
 };

@@ -13,28 +13,28 @@ export const SEOSettings: GlobalConfig = {
       name: "defaultTitle",
       type: "text",
       label: "Default Meta Title",
-      defaultValue: "AquaBest Brands - Premium Water & Pastries",
+      defaultValue: "Send Clouding - Courier & Logistics in the Netherlands & UK",
     },
     {
       name: "titleTemplate",
       type: "text",
       label: "Title Template",
-      defaultValue: "%s | AquaBest Brands",
+      defaultValue: "%s | Send Clouding",
       admin: {
-        description: "Use %s for the page title. Example: %s | AquaBest Brands",
+        description: "Use %s for the page title. Example: %s | Send Clouding",
       },
     },
     {
       name: "defaultDescription",
       type: "textarea",
       label: "Default Meta Description",
-      defaultValue: "AquaBest Brands offers premium water and pastry products. Quality you can trust, taste you'll love. Shop our range of purified water and fresh pastries.",
+      defaultValue: "Send Clouding offers courier and logistics services across the Netherlands and the UK. Same-day, next-day and international delivery with live tracking on every shipment.",
     },
     {
       name: "defaultKeywords",
       type: "text",
       label: "Default Keywords",
-      defaultValue: "aquabest, water, pastries, premium water, fresh pastries, netherlands, united kingdom, amsterdam, london",
+      defaultValue: "courier, logistics, same-day delivery, next-day delivery, express delivery, shipping, freight, parcel delivery, netherlands, united kingdom, amsterdam, london, package tracking",
       admin: {
         description: "Comma-separated keywords",
       },
@@ -52,7 +52,7 @@ export const SEOSettings: GlobalConfig = {
       name: "twitterHandle",
       type: "text",
       label: "Twitter/X Handle",
-      defaultValue: "@aquabestbrands",
+      defaultValue: "@sendclouding",
     },
     {
       name: "googleSiteVerification",

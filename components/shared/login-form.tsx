@@ -34,7 +34,7 @@ export function LoginForm() {
       <div className="mb-8 rounded-2xl border border-border bg-white p-8 shadow-sm">
         <div className="mb-8 text-center">
           <h1 className="text-page-title text-foreground">Welcome back</h1>
-          <p className="text-body mt-2">Sign in to your Signages.ng account</p>
+          <p className="text-body mt-2">Sign in to your Send Clouding account</p>
         </div>
         {error && (
           <div className="mb-4 rounded-xl bg-destructive/5 px-4 py-3 text-sm text-destructive">

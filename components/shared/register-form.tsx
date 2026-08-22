@@ -50,7 +50,7 @@ export function RegisterForm() {
         <div className="mb-8 text-center">
           <h1 className="text-page-title text-foreground">Create your account</h1>
           <p className="text-body mt-2">
-            Join Signages.ng and start designing custom prints
+            Join Send Clouding and start shipping today
           </p>
         </div>
         {success && (

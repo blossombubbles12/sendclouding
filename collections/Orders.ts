@@ -366,7 +366,7 @@ export const Orders: CollectionConfig = {
               orderTotal: formatCurrency(order.total || 0),
               adminUrl,
             });
-            await sendEmail("admin@aquabestbrands.com", aSubject, aHtml);
+            await sendEmail("admin@sendclouding.com", aSubject, aHtml);
           }
 
           // On update: send status change email + trigger production jobs upon success payment confirmation

@@ -55,7 +55,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const post = await getArticle(slug);
 
-  const title = post.seo?.metaTitle?.trim() || `${post.title} | AquaBest Brands`;
+  const title = post.seo?.metaTitle?.trim() || `${post.title} | Send Clouding`;
   const description =
     post.seo?.metaDescription?.trim() ||
     getPostExcerpt(post) ||
@@ -77,8 +77,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       url,
       publishedTime: post.publishDate ?? undefined,
       modifiedTime: post.updatedAt,
-      authors: [post.author?.name ?? "AquaBest Brands"].filter(Boolean),
-      siteName: "AquaBest Brands",
+      authors: [post.author?.name ?? "Send Clouding"].filter(Boolean),
+      siteName: "Send Clouding",
       ...(image ? { images: [{ url: image, alt: post.title }] } : {}),
     },
     twitter: {
@@ -125,10 +125,10 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
     articleSection: post.category?.name,
     keywords: tags.join(", ") || undefined,
     mainEntityOfPage: { "@type": "WebPage", "@id": articleUrl },
-    author: { "@type": "Person", name: post.author?.name || "AquaBest Brands" },
+    author: { "@type": "Person", name: post.author?.name || "Send Clouding" },
     publisher: {
       "@type": "Organization",
-      name: "AquaBest Brands",
+      name: "Send Clouding",
       logo: { "@type": "ImageObject", url: absolutize(post.author?.avatar?.url) },
     },
   };

@@ -56,7 +56,7 @@ tfoot td{padding:10px 0}
 .footer{text-align:center;margin-top:60px;font-size:12px;color:#888;border-top:1px solid #ddd;padding-top:20px}
 @media print{.no-print{display:none}}</style></head><body>
 <div class="no-print" style="text-align:right;margin-bottom:20px"><button onclick="window.print()" style="background:#063E9B;color:white;border:none;padding:10px 24px;border-radius:50px;cursor:pointer;font-weight:bold">Print Invoice</button></div>
-<div class="header"><div><div class="logo">AquaBest Brands</div><p style="margin:5px 0;color:#888">Amsterdam, Netherlands</p><p style="margin:5px 0;color:#888">hello@aquabestbrands.com</p></div><div class="invoice-title">INVOICE</div></div>
+<div class="header"><div><div class="logo">Send Clouding</div><p style="margin:5px 0;color:#888">Amsterdam, Netherlands</p><p style="margin:5px 0;color:#888">hello@sendclouding.com</p></div><div class="invoice-title">INVOICE</div></div>
 <div class="info-grid">
 <div class="info-box"><h3>Invoice No</h3><p style="font-weight:bold">${orderNumber}</p></div>
 <div class="info-box"><h3>Date</h3><p>${date}</p></div>
@@ -69,7 +69,7 @@ tfoot td{padding:10px 0}
 <tr><td colspan="3" style="text-align:right;color:#888">Shipping${shipMethod ? ` (${shipMethod}${shipZone ? ` - ${shipZone}` : ""})` : ""}</td><td style="text-align:right">€${(order.shipping || 0).toLocaleString("en-GB", { minimumFractionDigits: 2 })}</td></tr>
 <tr class="total-row"><td colspan="3" style="text-align:right">Total</td><td style="text-align:right">€${(order.total || 0).toLocaleString("en-GB", { minimumFractionDigits: 2 })}</td></tr>
 </tfoot></table>
-<div class="footer"><p>Thank you for your business!</p><p>AquaBest Brands — Premium Water & Bakery Products</p></div>
+<div class="footer"><p>Thank you for your business!</p><p>Send Clouding — Courier & Logistics</p></div>
 </body></html>`;
 
     return new NextResponse(html, {

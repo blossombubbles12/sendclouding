@@ -49,7 +49,7 @@ export function WhyChoose() {
     <Section background="muted" spacing="lg">
       <Reveal>
         <SectionHeading
-          eyebrow="Why Choose Signages.ng"
+          eyebrow="Why Choose Send Clouding"
           title="Professional printing you can rely on"
           description="From design to delivery, we set the standard for quality print-on-demand in Europe."
         />

@@ -7,14 +7,14 @@ import { Reveal } from "@/components/motion/reveal";
 import { TrackOrderForm } from "@/components/track-order/track-order-form";
 
 export const metadata: Metadata = {
-  title: "Track Order | AquaBest Brands",
+  title: "Track Order | Send Clouding",
   description:
-    "Track the status of your AquaBest delivery. Enter your order number to see the latest updates.",
+    "Track the status of your Send Clouding delivery. Enter your order number to see the latest updates.",
 };
 
 const helpChannels = [
   { icon: Phone, title: "Call Us", value: "+31 20 000 0000" },
-  { icon: Mail, title: "Email Us", value: "hello@aquabestbrands.com" },
+  { icon: Mail, title: "Email Us", value: "hello@sendclouding.com" },
   { icon: MapPin, title: "Visit Us", value: "Amsterdam, Netherlands" },
 ];
 
@@ -24,7 +24,7 @@ export default function TrackOrderPage() {
       <SubpageHero
         eyebrow="Customer Support"
         title="Track Your Order"
-        description="Enter your order number below to trace the status of your AquaBest delivery."
+        description="Enter your order number below to trace the status of your Send Clouding delivery."
       />
 
       <Section background="white" spacing="lg">

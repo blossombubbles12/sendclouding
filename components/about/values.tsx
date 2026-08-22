@@ -44,7 +44,7 @@ export function Values() {
         <SectionHeading
           eyebrow="Our Values"
           title="The principles behind every print"
-          description="Six values guide how we design, print, and deliver every product bearing the Signages.ng name."
+          description="Six values guide how we design, print, and deliver every product bearing the Send Clouding name."
         />
       </Reveal>
       <Grid cols={3} gap="lg" className="mt-14">

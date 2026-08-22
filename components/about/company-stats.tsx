@@ -23,7 +23,7 @@ export function CompanyStats() {
           </h2>
           <p className="mt-4 text-white/80">
             Behind every print lies a growing community of businesses and individuals who
-            rely on Signages.ng for quality they can count on.
+            rely on Send Clouding for quality they can count on.
           </p>
         </Reveal>
 

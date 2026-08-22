@@ -14,13 +14,13 @@ export const SiteSettings: GlobalConfig = {
       type: "text",
       required: true,
       label: "Site Name",
-      defaultValue: "AquaBest Brands",
+      defaultValue: "Send Clouding",
     },
     {
       name: "siteDescription",
       type: "textarea",
       label: "Site Description",
-      defaultValue: "Premium water and pastry products for a healthier lifestyle.",
+      defaultValue: "Modern courier and logistics platform for the Netherlands and the UK. Same-day, next-day and freight delivery with live tracking.",
     },
     {
       name: "logo",
@@ -38,7 +38,7 @@ export const SiteSettings: GlobalConfig = {
       name: "contactEmail",
       type: "email",
       label: "Contact Email",
-      defaultValue: "info@aquabestbrands.com",
+      defaultValue: "info@sendclouding.com",
     },
     {
       name: "contactPhone",

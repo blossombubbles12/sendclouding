@@ -34,7 +34,7 @@ export function AboutCTA() {
               Ready to make your brand stand out?
             </h2>
             <p className="mx-auto mt-4 max-w-xl text-white/80">
-              Join thousands of businesses and individuals who trust Signages.ng for their
+              Join thousands of businesses and individuals who trust Send Clouding for their
               printing and signage needs.
             </p>
           </div>

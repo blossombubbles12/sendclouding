@@ -76,7 +76,7 @@ export async function FeaturedCategoriesLive() {
         <SectionHeading
           eyebrow="Shop by Category"
           title="Everything you need, freshly made"
-          description="From purified water to oven-fresh pastries, explore our full range of AquaBest products."
+          description="From purified water to oven-fresh pastries, explore our full range of Send Clouding products."
         />
       </Reveal>
       <Grid cols={3} gap="lg" className="mt-14">
