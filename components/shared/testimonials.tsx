@@ -10,15 +10,15 @@ import { Reveal } from "@/components/motion/reveal";
 const testimonials = [
   {
     quote: "Send Clouding transformed how we handle deliveries for our Shopify store. What used to take hours of manual work now happens automatically. Our customers love the real-time tracking.",
-    author: "Adaeze Okonkwo",
-    role: "Founder, Kola Fashion",
+    author: "Sophie van der Berg",
+    role: "Founder, Studio Bloom",
     company: "E-commerce • 2,400+ shipments/month",
     avatar: null,
     rating: 5,
   },
   {
     quote: "The same-day delivery in Amsterdam is a game-changer for our restaurant supply chain. We get fresh ingredients to three locations before lunch service every day. Reliable, tracked, and affordable.",
-    author: "Chef Tunde Bakare",
+    author: "Mark Vermeer",
     role: "Executive Chef, Kitchen Group, Amsterdam",
     company: "Food Service • 150+ deliveries/week",
     avatar: null,
@@ -26,7 +26,7 @@ const testimonials = [
   },
   {
     quote: "We needed to ship medical supplies to clinics across the Netherlands and the UK with temperature monitoring. Send Clouding's cold chain solution and dedicated support made it seamless.",
-    author: "Dr. Fatima Abdullahi",
+    author: "Dr. Anna Dekker",
     role: "Logistics Director, MedSupply NL",
     company: "Healthcare • Nationwide cold chain",
     avatar: null,
@@ -34,7 +34,7 @@ const testimonials = [
   },
   {
     quote: "The API integration took our dev team two days. Now every order from our custom ERP automatically creates a shipment, prints labels, and notifies the customer. Zero manual intervention.",
-    author: "Chinedu Eze",
+    author: "James Whitfield",
     role: "CTO, BuildMart",
     company: "B2B Marketplace • API integration",
     avatar: null,
@@ -42,15 +42,15 @@ const testimonials = [
   },
   {
     quote: "As a small business, I was worried about costs. But the volume discounts kicked in fast, and the free insurance on every shipment saved us when a package was damaged. Honest pricing.",
-    author: "Blessing Adebayo",
-    role: "Owner, Blessing's Crafts",
+    author: "Hannah O'Connor",
+    role: "Owner, The Craft Corner",
     company: "Artisan • 80 shipments/month",
     avatar: null,
     rating: 5,
   },
   {
     quote: "The proof of delivery with photo and GPS coordinates gives us complete accountability. Our clients never dispute deliveries anymore. It's the professional standard we needed.",
-    author: "Ibrahim Musa",
+    author: "Pieter de Vries",
     role: "Operations Manager, LegalDocs Courier",
     company: "Legal Services • Secure documents",
     avatar: null,

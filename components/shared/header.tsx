@@ -129,7 +129,7 @@ export function Header({
             <img
               src={logoUrl}
               alt={logoAlt}
-              className="h-8 w-auto object-contain"
+              className="h-10 w-auto object-contain"
             />
           ) : (
             <>
