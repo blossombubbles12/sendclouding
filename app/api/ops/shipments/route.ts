@@ -20,14 +20,13 @@ export async function POST(req: NextRequest) {
     }
 
     const status = body.status as string | undefined;
-    if (status && !SHIPMENT_STATUSES.includes(status)) {
+    if (status && !SHIPMENT_STATUSES.includes(status as (typeof SHIPMENT_STATUSES)[number])) {
       return Response.json({ success: false, error: `Invalid status: ${status}` }, { status: 400 });
     }
 
     // The Shipments collection beforeChange hook auto-generates the tracking number.
     const doc = await payload.create({
       collection: "shipments",
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       data: {
         sender: {
           name: sender.name,

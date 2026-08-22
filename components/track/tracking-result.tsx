@@ -3,7 +3,7 @@
 import * as React from "react";
 import { Package, Truck, MapPin, CheckCircle2, Clock, ShieldCheck, Map } from "lucide-react";
 import { getShipmentStatusLabel } from "@/lib/shipments/statuses";
-import { SHIPMENT_STATUS_COLORS } from "@/lib/shipments/query";
+import { SHIPMENT_STATUS_COLORS } from "@/lib/shipments/statuses";
 import type { PublicTrackingResult } from "@/lib/shipments/lookup";
 import { TrackSearchForm } from "@/components/track/track-search-form";
 

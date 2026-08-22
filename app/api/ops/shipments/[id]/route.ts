@@ -25,7 +25,7 @@ export async function PATCH(req: NextRequest, { params }: { params: Promise<{ id
     // Status-only update (from the detail page status control).
     if ("status" in body && Object.keys(body).length === 1) {
       const status = body.status as string | undefined;
-      if (!status || !SHIPMENT_STATUSES.includes(status)) {
+      if (!status || !SHIPMENT_STATUSES.includes(status as (typeof SHIPMENT_STATUSES)[number])) {
         return Response.json({ success: false, error: `Invalid status: ${status}` }, { status: 400 });
       }
       // The afterChange hook automatically records a tracking event on status change.
@@ -49,14 +49,13 @@ export async function PATCH(req: NextRequest, { params }: { params: Promise<{ id
     }
 
     const status = body.status as string | undefined;
-    if (status && !SHIPMENT_STATUSES.includes(status)) {
+    if (status && !SHIPMENT_STATUSES.includes(status as (typeof SHIPMENT_STATUSES)[number])) {
       return Response.json({ success: false, error: `Invalid status: ${status}` }, { status: 400 });
     }
 
     await payload.update({
       collection: "shipments",
       id: shipmentId,
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       data: {
         sender: {
           name: sender.name,

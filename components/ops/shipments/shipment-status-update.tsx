@@ -3,7 +3,7 @@
 import * as React from "react";
 import { useRouter } from "next/navigation";
 import { Loader2, CheckCircle2 } from "lucide-react";
-import { SHIPMENT_STATUSES, getShipmentStatusLabel } from "@/lib/shipments/query";
+import { SHIPMENT_STATUSES, getShipmentStatusLabel } from "@/lib/shipments/statuses";
 
 export function ShipmentStatusUpdate({
   shipmentId,

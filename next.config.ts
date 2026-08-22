@@ -5,9 +5,9 @@ import path from "path";
 const nextConfig: NextConfig = {
   reactCompiler: false,
   serverExternalPackages: [
-    "@payloadcms/*",
     "payload",
-    "sharp",
+    "@payloadcms/db-postgres",
+    "@payloadcms/email-nodemailer",
     "nodemailer",
     "@next/env",
   ],

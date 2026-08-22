@@ -1,6 +1,12 @@
 import { getPayload } from "payload";
 import config from "@payload-config";
-import { getShipmentStatusLabel } from "@/lib/shipments/statuses";
+import {
+  getShipmentStatusLabel,
+  SHIPMENT_STATUSES,
+  SHIPMENT_STATUS_COLORS,
+} from "@/lib/shipments/statuses";
+
+export { getShipmentStatusLabel, SHIPMENT_STATUSES, SHIPMENT_STATUS_COLORS };
 
 export interface ShipmentListItem {
   id: number;
@@ -14,32 +20,6 @@ export interface ShipmentListItem {
   createdAt: string;
   updatedAt: string;
 }
-
-export const SHIPMENT_STATUSES = [
-  "created",
-  "pickup-scheduled",
-  "picked-up",
-  "in-transit",
-  "out-for-delivery",
-  "delivered",
-  "delayed",
-  "exception",
-  "cancelled",
-  "returned",
-];
-
-export const SHIPMENT_STATUS_COLORS: Record<string, string> = {
-  created: "bg-sky-100 text-sky-700",
-  "pickup-scheduled": "bg-sky-100 text-sky-700",
-  "picked-up": "bg-indigo-100 text-indigo-700",
-  "in-transit": "bg-indigo-100 text-indigo-700",
-  "out-for-delivery": "bg-amber-100 text-amber-700",
-  delivered: "bg-emerald-100 text-emerald-700",
-  delayed: "bg-amber-100 text-amber-700",
-  exception: "bg-red-100 text-red-700",
-  cancelled: "bg-slate-100 text-slate-600",
-  returned: "bg-slate-100 text-slate-600",
-};
 
 function getGroupValue(value: unknown): string | null {
   if (!value) return null;
@@ -96,5 +76,3 @@ export async function queryShipments(params: {
     page: result.page ?? 1,
   };
 }
-
-export { getShipmentStatusLabel };

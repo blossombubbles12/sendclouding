@@ -3,7 +3,7 @@
 import * as React from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Search } from "lucide-react";
-import { SHIPMENT_STATUSES, getShipmentStatusLabel } from "@/lib/shipments/query";
+import { SHIPMENT_STATUSES, getShipmentStatusLabel } from "@/lib/shipments/statuses";
 
 export function ShipmentFilters() {
   const router = useRouter();

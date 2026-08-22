@@ -3,7 +3,7 @@
 import * as React from "react";
 import { useRouter } from "next/navigation";
 import { Loader2, ArrowLeft, Package, Truck, MapPin } from "lucide-react";
-import { SHIPMENT_STATUSES, getShipmentStatusLabel } from "@/lib/shipments/query";
+import { SHIPMENT_STATUSES, getShipmentStatusLabel } from "@/lib/shipments/statuses";
 
 export interface LocationOption {
   id: number;
