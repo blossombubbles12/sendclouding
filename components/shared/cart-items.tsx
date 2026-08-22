@@ -239,7 +239,7 @@ export function CartItems() {
             <Link href="/checkout">Proceed to Checkout</Link>
           </Button>
           <p className="mt-3 text-center text-xs text-muted-foreground">
-            Shipping calculated at checkout. Free delivery on orders above \u20A620,000.
+            Shipping calculated at checkout. Free delivery on qualifying orders.
           </p>
         </div>
       </div>

@@ -6,7 +6,7 @@ export function ContactHero() {
     <section className="relative flex min-h-[440px] items-center overflow-hidden bg-primary-900 sm:min-h-[520px]">
       <div aria-hidden="true" className="absolute inset-0">
         <Image
-          src="/signageslide3.png"
+          src="/coveragebg.png"
           alt=""
           fill
           sizes="100vw"

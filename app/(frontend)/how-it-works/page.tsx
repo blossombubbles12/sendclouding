@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Package, MapPin, Truck, ShieldCheck, Zap, Map, Globe, CheckCircle2 } from "lucide-react";
 import { Section } from "@/components/layout/section";
@@ -64,6 +65,16 @@ export default function HowItWorksPage() {
     <>
       {/* Hero Section */}
       <section className="relative flex min-h-[440px] items-center overflow-hidden bg-primary sm:min-h-[520px]">
+        <div aria-hidden="true" className="absolute inset-0">
+          <Image
+            src="/coveragebg.png"
+            alt=""
+            fill
+            sizes="100vw"
+            priority
+            className="object-cover object-center opacity-30"
+          />
+        </div>
         <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary-800 to-primary-900" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-from)_0%,transparent_70%)]" />
         <div className="relative z-10 mx-auto w-full max-w-7xl px-4 py-24 sm:px-6 lg:px-8">

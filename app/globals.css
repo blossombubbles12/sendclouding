@@ -626,6 +626,17 @@
   }
 }
 
+/* ── Services page: scroll-to anchor highlight ── */
+@keyframes services-pulse {
+  0% { box-shadow: 0 0 0 0 rgb(14 165 233 / 0.4); }
+  100% { box-shadow: 0 0 0 18px rgb(14 165 233 / 0); }
+}
+
+.services-highlight {
+  border-radius: 2rem;
+  animation: services-pulse 1.2s ease-out 2;
+}
+
 @utility container {
   margin-inline: auto;
   padding-inline: 1rem;

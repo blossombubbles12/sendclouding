@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 
 export interface PolicySection {
@@ -40,6 +41,16 @@ export function PolicyPage({ title, description, lastUpdated, sections }: Policy
   return (
     <section className="bg-white">
       <div className="relative overflow-hidden bg-primary-900 pb-20 pt-28 text-white sm:pt-32">
+        <div aria-hidden="true" className="absolute inset-0">
+          <Image
+            src="/coveragebg.png"
+            alt=""
+            fill
+            sizes="100vw"
+            priority
+            className="object-cover object-center opacity-30"
+          />
+        </div>
         <div
           aria-hidden="true"
           className="pointer-events-none absolute inset-0 bg-[radial-gradient(50%_70%_at_20%_0%,rgb(0_174_239/0.2),transparent)]"

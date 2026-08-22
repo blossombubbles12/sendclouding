@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 
 export interface SubpageHeroProps {
@@ -9,6 +10,16 @@ export interface SubpageHeroProps {
 export function SubpageHero({ title, description, eyebrow }: SubpageHeroProps) {
   return (
     <section className="relative overflow-hidden bg-primary-900 text-white">
+      <div aria-hidden="true" className="absolute inset-0">
+        <Image
+          src="/coveragebg.png"
+          alt=""
+          fill
+          sizes="100vw"
+          priority
+          className="object-cover object-center opacity-30"
+        />
+      </div>
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 bg-[radial-gradient(50%_70%_at_20%_0%,rgb(249_115_22/0.15),transparent)]"

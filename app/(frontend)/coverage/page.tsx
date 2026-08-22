@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { MapPin, Globe2, Truck, Building2, CheckCircle2 } from "lucide-react";
 import { Section } from "@/components/layout/section";
 import { Container } from "@/components/layout/container";
@@ -73,8 +74,19 @@ export default function CoveragePage() {
         </Container>
       </section>
 
-      <Section background="primary" spacing="lg" pattern="band" className="text-white">
-        <Container>
+      <section className="relative overflow-hidden bg-primary py-20 text-white sm:py-28 lg:py-32">
+        <div aria-hidden="true" className="absolute inset-0">
+          <Image
+            src="/coveragebg.png"
+            alt=""
+            fill
+            sizes="100vw"
+            priority
+            className="object-cover object-center opacity-30"
+          />
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/85 via-primary-800/70 to-primary-900/85" />
+        </div>
+        <Container className="relative">
           <Reveal>
             <SectionHeading
               tone="dark"
@@ -95,7 +107,7 @@ export default function CoveragePage() {
             ))}
           </Grid>
         </Container>
-      </Section>
+      </section>
 
       <Section background="white" spacing="lg" pattern="dots">
         <Container>

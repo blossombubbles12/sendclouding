@@ -4,7 +4,7 @@ import * as React from "react";
 import { X, Sparkles } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-const MESSAGE = "Free delivery on orders over \u20A620,000 nationwide. Start designing your custom prints today.";
+const MESSAGE = "Courier & logistics across the Netherlands and UK — real-time tracking on every shipment.";
 
 export function AnnouncementBar() {
   const [visible, setVisible] = React.useState(true);

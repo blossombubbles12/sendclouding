@@ -61,7 +61,7 @@ export default function AboutPage() {
         {/* Background image */}
         <div className="absolute inset-0 -z-10">
           <Image
-            src="/about-hero.png"
+            src="/coveragebg.png"
             alt="Send Clouding logistics operations"
             fill
             priority
