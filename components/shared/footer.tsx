@@ -1,27 +1,17 @@
 import Link from "next/link";
-import { Package, Mail, MapPin, Phone, Truck, ArrowRight } from "lucide-react";
+import { Package, Mail, MapPin, Phone } from "lucide-react";
 import { Container } from "@/components/layout/container";
 import { Separator } from "@/components/ui/separator";
 
 const columns = [
   {
-    title: "Ship",
+    title: "Ship & Track",
     links: [
       { label: "Ship a Package", href: "/ship" },
       { label: "Get a Quote", href: "/quote" },
+      { label: "Track Shipment", href: "/track" },
       { label: "Schedule Pickup", href: "/schedule" },
       { label: "Shipping Calculator", href: "/calculator" },
-      { label: "Shipping Supplies", href: "/supplies" },
-    ],
-  },
-  {
-    title: "Track",
-    links: [
-      { label: "Track Shipment", href: "/track" },
-      { label: "Track by Reference", href: "/track/reference" },
-      { label: "Delivery Notifications", href: "/notifications" },
-      { label: "Proof of Delivery", href: "/pod" },
-      { label: "Track Multiple", href: "/track/bulk" },
     ],
   },
   {
@@ -40,8 +30,8 @@ const columns = [
     links: [
       { label: "About Us", href: "/about" },
       { label: "Coverage", href: "/coverage" },
+      { label: "Pricing", href: "/pricing" },
       { label: "Careers", href: "/careers" },
-      { label: "Press", href: "/press" },
       { label: "Contact", href: "/contact" },
     ],
   },
@@ -79,9 +69,9 @@ export function Footer({
   return (
     <footer className="bg-primary text-white">
       <Container className="py-16 sm:py-20">
-        <div className="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-6">
+        <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-6 lg:gap-8">
           {/* Brand column */}
-          <div className="lg:col-span-2">
+          <div className="sm:col-span-2 lg:col-span-2">
             <Link href="/" className="flex items-center gap-2.5">
               {logoUrl ? (
                 <img
