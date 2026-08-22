@@ -17,7 +17,7 @@ const nextConfig: NextConfig = {
     webpackConfig.plugins.push(
       new webpack.NormalModuleReplacementPlugin(
         /\.scss$/,
-        path.resolve("empty-module.js")
+        path.resolve("empty-module.cjs")
       ),
       new webpack.NormalModuleReplacementPlugin(
         /ui[\\/]dist[\\/]assets[\\/]index\.js$/,

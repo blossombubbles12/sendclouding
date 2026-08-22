@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     template: "%s | Signages.ng",
   },
   description:
-    "Signages.ng is Nigeria's premium print-on-demand platform. Design and customize banners, business cards, signs, promotional materials, and more. Create your design, we print and deliver.",
+    "Signages.ng is Europe's premium print-on-demand platform. Design and customize banners, business cards, signs, promotional materials, and more. Create your design, we print and deliver.",
   keywords: [
     "signage",
     "printing",
@@ -34,28 +34,28 @@ export const metadata: Metadata = {
     "custom printing",
     "print on demand",
     "signages",
-    "nigeria printing",
+    "europe printing",
     "design and print",
     "corporate printing",
-    "signage nigeria",
+    "signage europe",
     "custom signs",
   ],
   authors: [{ name: "Signages.ng" }],
   creator: "Signages.ng",
   openGraph: {
     type: "website",
-    locale: "en_NG",
+    locale: "en_GB",
     siteName: "Signages.ng",
-    title: "Signages.ng — Design, Personalize & Print Premium Signage in Nigeria",
+    title: "Signages.ng — Design, Personalize & Print Premium Signage in Europe",
     description:
-      "Create custom banners, signs, business cards, and promotional materials. Design online, we print and deliver anywhere in Nigeria.",
+      "Create custom banners, signs, business cards, and promotional materials. Design online, we print and deliver anywhere in the Netherlands and the UK.",
     images: [{ url: "/og-image.jpg", width: 1200, height: 630 }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Signages.ng — Premium Print-on-Demand",
     description:
-      "Design and customize your signage. Premium quality printing and delivery across Nigeria.",
+      "Design and customize your signage. Premium quality printing and delivery across the Netherlands and the UK.",
     images: ["/og-image.jpg"],
   },
   robots: {

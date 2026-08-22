@@ -5,7 +5,7 @@ import { Reveal } from "@/components/motion/reveal";
 const stats = [
   { value: "2,000+", label: "Businesses served" },
   { value: "50K+", label: "Orders delivered" },
-  { value: "36", label: "States covered in Nigeria" },
+  { value: "500+", label: "Cities & towns covered" },
   { value: "24hr", label: "Fastest turnaround" },
 ];
 

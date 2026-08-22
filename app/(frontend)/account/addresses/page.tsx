@@ -37,7 +37,7 @@ function AddressesContent() {
   const [city, setCity] = React.useState("");
   const [state, setState] = React.useState("");
   const [postalCode, setPostalCode] = React.useState("");
-  const [country, setCountry] = React.useState("Nigeria");
+  const [country, setCountry] = React.useState("Netherlands");
   const [phone, setPhone] = React.useState("");
 
   const fetchAddresses = React.useCallback(async () => {

@@ -1,22 +1,16 @@
 import type { Metadata } from "next";
-import { SubpageHero } from "@/components/shared/subpage-hero";
-import { FAQContent } from "@/components/faq/faq-content";
+import FAQClient from "./faq-client";
 
 export const metadata: Metadata = {
-  title: "FAQ | AquaBest Brands",
-  description:
-    "Find answers to common questions about AquaBest water, bakery products, ordering, payment, and delivery.",
+  title: "FAQ | Send Clouding",
+  description: "Find answers to common questions about shipping, tracking, pricing, coverage, and our services. Quick help for Send Clouding customers.",
+  openGraph: {
+    title: "FAQ | Send Clouding",
+    description: "Quick answers to common questions about shipping, tracking, pricing, and coverage.",
+    type: "website",
+  },
 };
 
 export default function FAQPage() {
-  return (
-    <>
-      <SubpageHero
-        eyebrow="Help Center"
-        title="Frequently Asked Questions"
-        description="Quick answers to the questions we hear most — from ordering and delivery to our products and policies."
-      />
-      <FAQContent />
-    </>
-  );
+  return <FAQClient />;
 }

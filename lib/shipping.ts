@@ -25,16 +25,15 @@ export interface ShippingCalculation {
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
 
 const DEFAULT_ZONES: ShippingZone[] = [
-  { name: "Lagos", key: "lagos", cities: "Lagos, Ikeja, Lekki, Victoria Island, Surulere, Yaba, Apapa", states: "Lagos", isActive: true },
-  { name: "Abuja", key: "abuja", cities: "Abuja, Garki, Wuse, Maitama, Asokoro", states: "FCT, Abuja", isActive: true },
-  { name: "Port Harcourt", key: "port-harcourt", cities: "Port Harcourt, Obio-Akpor, Eleme", states: "Rivers", isActive: true },
+  { name: "London", key: "london", cities: "London, Birmingham, Leeds, Bristol, Manchester", states: "Greater London, West Midlands, West Yorkshire, City of Bristol, Greater Manchester", isActive: true },
+  { name: "Amsterdam", key: "amsterdam", cities: "Amsterdam, Rotterdam, The Hague, Utrecht, Eindhoven", states: "North Holland, South Holland, Utrecht, North Brabant", isActive: true },
   { name: "Other States", key: "other-states", cities: "", states: "", isActive: true },
 ];
 
 const DEFAULT_METHODS: ShippingMethod[] = [
-  { id: "home-delivery", name: "Home Delivery", description: "Delivered to your doorstep.", baseFee: 2000, estimatedDelivery: "2-4 business days", isActive: true },
+  { id: "home-delivery", name: "Home Delivery", description: "Delivered to your doorstep.", baseFee: 9.95, estimatedDelivery: "2-4 business days", isActive: true },
   { id: "store-pickup", name: "Store Pickup", description: "Pick up your order at our store.", baseFee: 0, estimatedDelivery: "Ready in 24 hours", isActive: true },
-  { id: "express-delivery", name: "Express Delivery", description: "Priority delivery for urgent orders.", baseFee: 5000, estimatedDelivery: "1-2 business days", isActive: true },
+  { id: "express-delivery", name: "Express Delivery", description: "Priority delivery for urgent orders.", baseFee: 14.95, estimatedDelivery: "1-2 business days", isActive: true },
 ];
 
 export function resolveZone(city: string, state: string, zones: ShippingZone[]): ShippingZone {
@@ -93,12 +92,12 @@ export async function getShippingSettings(): Promise<{
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const data = await res.json();
     return {
-      freeShippingThreshold: data.freeShippingThreshold ?? 50000,
+      freeShippingThreshold: data.freeShippingThreshold ?? 100,
       zones: (data.zones && data.zones.length > 0) ? data.zones : DEFAULT_ZONES,
     };
   } catch (err) {
     console.warn("[Shipping] Settings unavailable, using defaults:", (err as Error).message);
-    return { freeShippingThreshold: 50000, zones: DEFAULT_ZONES };
+    return { freeShippingThreshold: 100, zones: DEFAULT_ZONES };
   }
 }
 
@@ -112,7 +111,7 @@ export async function getShippingMethods(): Promise<ShippingMethod[]> {
     const data = await res.json();
 
     if (data.docs && data.docs.length > 0) {
-      return data.docs.map((doc: any) => ({
+      return data.docs.map((doc: Record<string, unknown>) => ({
         id: doc.id,
         name: doc.name,
         description: doc.description || "",
@@ -136,7 +135,7 @@ export async function getZoneFees(methodId: string): Promise<{ zone: string; fee
     clearTimeout(timeout);
     if (!res.ok) return [];
     const data = await res.json();
-    return (data.zoneFees || []).map((zf: any) => ({ zone: zf.zone, fee: zf.fee }));
+    return (data.zoneFees || []).map((zf: Record<string, unknown>) => ({ zone: zf.zone as string, fee: zf.fee as number }));
   } catch {
     return [];
   }

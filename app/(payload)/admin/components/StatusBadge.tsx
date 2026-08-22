@@ -35,6 +35,15 @@ const STATUS_TONE_MAP: Record<string, Tone> = {
   blocked: "danger",
   // generic publish states
   published: "success",
+  // Shipments.status / TrackingEvents.status (see lib/shipments/statuses.ts)
+  created: "info",
+  "pickup-scheduled": "info",
+  "picked-up": "brand",
+  "in-transit": "brand",
+  "out-for-delivery": "brand",
+  delayed: "warning",
+  exception: "danger",
+  returned: "neutral",
 };
 
 function formatLabel(value: string): string {

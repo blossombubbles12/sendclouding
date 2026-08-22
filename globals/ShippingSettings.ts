@@ -14,8 +14,8 @@ export const ShippingSettings: GlobalConfig = {
       name: "freeShippingThreshold",
       type: "number",
       min: 0,
-      defaultValue: 50000,
-      label: "Free Shipping Threshold (₦)",
+      defaultValue: 100,
+      label: "Free Shipping Threshold (€)",
       admin: {
         description: "Orders with subtotal above this amount qualify for free shipping.",
       },
@@ -40,7 +40,7 @@ export const ShippingSettings: GlobalConfig = {
           required: true,
           label: "Zone Key",
           admin: {
-            description: "Used internally to match customer location. Use lowercase, e.g. 'lagos', 'abuja'.",
+            description: "Used internally to match customer location. Use lowercase, e.g. 'amsterdam', 'london'.",
           },
         },
         {

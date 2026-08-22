@@ -30,7 +30,7 @@ export async function GET(req: NextRequest) {
       return NextResponse.json({ error: "Order not found" }, { status: 404 });
     }
 
-    const date = new Date(order.createdAt).toLocaleDateString("en-NG", {
+    const date = new Date(order.createdAt).toLocaleDateString("en-GB", {
       year: "numeric", month: "long", day: "numeric",
     });
 
@@ -38,7 +38,7 @@ export async function GET(req: NextRequest) {
     const shipZone = order.shippingMethod?.zone || "";
 
     const itemRows = (order.items || []).map((item: any) =>
-      `<tr><td style="padding:10px 0;border-bottom:1px solid #ddd">${item.name}${item.sku ? `<br><span style="font-size:12px;color:#888">SKU: ${item.sku}</span>` : ""}</td><td style="padding:10px 0;border-bottom:1px solid #ddd;text-align:center">${item.quantity}</td><td style="padding:10px 0;border-bottom:1px solid #ddd;text-align:right">${item.price.toLocaleString("en-NG", { minimumFractionDigits: 2 })}</td><td style="padding:10px 0;border-bottom:1px solid #ddd;text-align:right">${item.total.toLocaleString("en-NG", { minimumFractionDigits: 2 })}</td></tr>`
+      `<tr><td style="padding:10px 0;border-bottom:1px solid #ddd">${item.name}${item.sku ? `<br><span style="font-size:12px;color:#888">SKU: ${item.sku}</span>` : ""}</td><td style="padding:10px 0;border-bottom:1px solid #ddd;text-align:center">${item.quantity}</td><td style="padding:10px 0;border-bottom:1px solid #ddd;text-align:right">${item.price.toLocaleString("en-GB", { minimumFractionDigits: 2 })}</td><td style="padding:10px 0;border-bottom:1px solid #ddd;text-align:right">${item.total.toLocaleString("en-GB", { minimumFractionDigits: 2 })}</td></tr>`
     ).join("");
 
     const html = `<!DOCTYPE html><html><head><meta charset="utf-8"><title>Invoice ${orderNumber}</title>
@@ -56,7 +56,7 @@ tfoot td{padding:10px 0}
 .footer{text-align:center;margin-top:60px;font-size:12px;color:#888;border-top:1px solid #ddd;padding-top:20px}
 @media print{.no-print{display:none}}</style></head><body>
 <div class="no-print" style="text-align:right;margin-bottom:20px"><button onclick="window.print()" style="background:#063E9B;color:white;border:none;padding:10px 24px;border-radius:50px;cursor:pointer;font-weight:bold">Print Invoice</button></div>
-<div class="header"><div><div class="logo">AquaBest Brands</div><p style="margin:5px 0;color:#888">Lagos, Nigeria</p><p style="margin:5px 0;color:#888">hello@aquabestbrands.com</p></div><div class="invoice-title">INVOICE</div></div>
+<div class="header"><div><div class="logo">AquaBest Brands</div><p style="margin:5px 0;color:#888">Amsterdam, Netherlands</p><p style="margin:5px 0;color:#888">hello@aquabestbrands.com</p></div><div class="invoice-title">INVOICE</div></div>
 <div class="info-grid">
 <div class="info-box"><h3>Invoice No</h3><p style="font-weight:bold">${orderNumber}</p></div>
 <div class="info-box"><h3>Date</h3><p>${date}</p></div>
@@ -64,10 +64,10 @@ tfoot td{padding:10px 0}
       <div class="info-box"><h3>Status</h3><p style="font-weight:bold;color:#063E9B">${(order.status || "pending").toUpperCase()}</p><p>Payment: ${(order.paymentStatus || "pending").toUpperCase()}</p><p>Method: ${formatPaymentMethod(order.paymentMethod)}</p></div>
 </div>
 <table><thead><tr><th>Item</th><th style="text-align:center">Qty</th><th style="text-align:right">Price</th><th style="text-align:right">Total</th></tr></thead><tbody>${itemRows}</tbody><tfoot>
-<tr><td colspan="3" style="text-align:right;color:#888">Subtotal</td><td style="text-align:right">₦${(order.subtotal || 0).toLocaleString("en-NG", { minimumFractionDigits: 2 })}</td></tr>
-<tr><td colspan="3" style="text-align:right;color:#888">Tax (7.5%)</td><td style="text-align:right">₦${(order.tax || 0).toLocaleString("en-NG", { minimumFractionDigits: 2 })}</td></tr>
-<tr><td colspan="3" style="text-align:right;color:#888">Shipping${shipMethod ? ` (${shipMethod}${shipZone ? ` - ${shipZone}` : ""})` : ""}</td><td style="text-align:right">₦${(order.shipping || 0).toLocaleString("en-NG", { minimumFractionDigits: 2 })}</td></tr>
-<tr class="total-row"><td colspan="3" style="text-align:right">Total</td><td style="text-align:right">₦${(order.total || 0).toLocaleString("en-NG", { minimumFractionDigits: 2 })}</td></tr>
+<tr><td colspan="3" style="text-align:right;color:#888">Subtotal</td><td style="text-align:right">€${(order.subtotal || 0).toLocaleString("en-GB", { minimumFractionDigits: 2 })}</td></tr>
+<tr><td colspan="3" style="text-align:right;color:#888">VAT (21%)</td><td style="text-align:right">€${(order.tax || 0).toLocaleString("en-GB", { minimumFractionDigits: 2 })}</td></tr>
+<tr><td colspan="3" style="text-align:right;color:#888">Shipping${shipMethod ? ` (${shipMethod}${shipZone ? ` - ${shipZone}` : ""})` : ""}</td><td style="text-align:right">€${(order.shipping || 0).toLocaleString("en-GB", { minimumFractionDigits: 2 })}</td></tr>
+<tr class="total-row"><td colspan="3" style="text-align:right">Total</td><td style="text-align:right">€${(order.total || 0).toLocaleString("en-GB", { minimumFractionDigits: 2 })}</td></tr>
 </tfoot></table>
 <div class="footer"><p>Thank you for your business!</p><p>AquaBest Brands — Premium Water & Bakery Products</p></div>
 </body></html>`;

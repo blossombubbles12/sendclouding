@@ -13,9 +13,9 @@ export const metadata: Metadata = {
 };
 
 const helpChannels = [
-  { icon: Phone, title: "Call Us", value: "+234 800 000 0000" },
+  { icon: Phone, title: "Call Us", value: "+31 20 000 0000" },
   { icon: Mail, title: "Email Us", value: "hello@aquabestbrands.com" },
-  { icon: MapPin, title: "Visit Us", value: "Lagos, Nigeria" },
+  { icon: MapPin, title: "Visit Us", value: "Amsterdam, Netherlands" },
 ];
 
 export default function TrackOrderPage() {

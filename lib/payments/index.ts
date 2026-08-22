@@ -33,7 +33,7 @@ function resolveMethodsFromEnv(): PaymentMethodOption[] {
     methods.push({
       id: "paystack",
       label: "Pay Online (Paystack)",
-      description: "Pay securely via debit/credit card, bank transfer, or USSD.",
+      description: "Pay securely via card, iDEAL, or bank transfer.",
     });
   }
 
@@ -117,7 +117,7 @@ export async function getAvailablePaymentMethods(): Promise<PaymentMethodOption[
     methods.push({
       id: "paystack",
       label: "Pay Online (Paystack)",
-      description: "Pay securely via debit/credit card, bank transfer, or USSD.",
+      description: "Pay securely via card, iDEAL, or bank transfer.",
     });
   }
 
@@ -141,7 +141,7 @@ export async function getAvailablePaymentMethods(): Promise<PaymentMethodOption[
     methods.push({
       id: "flutterwave",
       label: "Pay Online (Flutterwave)",
-      description: "Pay securely via card, bank transfer, or USSD with Flutterwave.",
+      description: "Pay securely via card, iDEAL, or bank transfer.",
     });
   }
 

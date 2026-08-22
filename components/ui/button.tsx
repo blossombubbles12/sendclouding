@@ -9,8 +9,8 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default: "bg-primary text-white hover:bg-primary-700",
-        secondary: "bg-secondary text-white hover:bg-secondary-600",
-        accent: "bg-accent text-white hover:bg-accent-600",
+        primary: "bg-secondary text-white hover:bg-secondary-600 hover:shadow-lg hover:shadow-secondary/25",
+        secondary: "bg-accent text-white hover:bg-accent-600",
         outline: "border border-border bg-white hover:bg-muted text-foreground",
         ghost: "hover:bg-muted text-foreground",
         link: "text-secondary underline-offset-4 hover:underline",
@@ -26,7 +26,7 @@ const buttonVariants = cva(
       },
     },
     defaultVariants: {
-      variant: "default",
+      variant: "primary",
       size: "default",
     },
   }

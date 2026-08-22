@@ -28,7 +28,7 @@ function richText(text: string) {
 
 // Simple design JSON for canvas templates that complies with the schema structures
 function createDesignJSON(title: string, width: number, height: number, type: "mug" | "wall_art" | "sticker" | "bag" | "apparel") {
-  const elements: any[] = [];
+  const elements: Record<string, unknown>[] = [];
 
   // Solid background layer
   elements.push({
@@ -829,7 +829,7 @@ async function seed() {
         "1.0.0",
         JSON.stringify(designJSON),
         designJSON.layers.length,
-        designJSON.layers.filter((l: any) => l.rules?.editable).length,
+        designJSON.layers.filter((l: Record<string, unknown>) => (l.rules as Record<string, unknown>)?.editable).length,
         true, // isDefault
         now
       ]
@@ -847,10 +847,10 @@ async function seed() {
     console.log(`  ✓ Instantiated Template: ${t.title}`);
   }
 
-  // 7. SEED SHIPPING DETAILS FOR REALISTIC NIGERIAN LOGISTICS
+  // 7. SEED SHIPPING DETAILS FOR REALISTIC EUROPEAN LOGISTICS
   const shippingOptions = [
-    { name: "Standard Dispatch Delivery (Lagos State Only)", desc: "Quick dispatch shipping within Lagos limits. Safe, fully trackable delivery.", fee: 2000, est: "1 - 2 business days" },
-    { name: "Regional Inland Delivery (Interstate Hubs)", desc: "Priority cargo dispatch to main state terminals outside Lagos (Abuja, PH, Ibadan, etc).", fee: 4500, est: "3 - 5 business days" },
+    { name: "Standard Delivery (Netherlands & UK)", desc: "Reliable 2-5 business day delivery across the Netherlands and UK.", fee: 9.95, est: "2-4 business days" },
+    { name: "Express Delivery (Major Cities)", desc: "Priority next-business-day delivery to major cities in the Netherlands and UK.", fee: 14.95, est: "1-2 business days" },
     { name: "Expedited Doorstep Air-Cargo Delivery", desc: "Premium expedited air shipment and direct doorstep courier to key residential cities.", fee: 8500, est: "1 - 2 business days" }
   ];
 

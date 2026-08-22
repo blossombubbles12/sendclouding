@@ -35,19 +35,19 @@ export const Products: CollectionConfig = {
       name: "price",
       type: "number",
       required: true,
-      label: "Price (NGN)",
+      label: "Price (EUR)",
       min: 0,
     },
     {
       name: "compareAtPrice",
       type: "number",
-      label: "Compare-at Price (NGN)",
+      label: "Compare-at Price (EUR)",
       min: 0,
     },
     {
       name: "additionalCustomizationPrice",
       type: "number",
-      label: "Additional Customization Price (NGN)",
+      label: "Additional Customization Price (EUR)",
       min: 0,
       defaultValue: 0,
       admin: {

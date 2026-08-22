@@ -79,7 +79,7 @@ export const Customers: CollectionConfig = {
           name: "country",
           type: "text",
           required: true,
-          defaultValue: "Nigeria",
+          defaultValue: "Netherlands",
           label: "Country",
         },
         {
@@ -106,7 +106,7 @@ export const Customers: CollectionConfig = {
       name: "totalSpent",
       type: "number",
       defaultValue: 0,
-      label: "Total Spent (NGN)",
+      label: "Total Spent (EUR)",
     },
     {
       name: "notes",

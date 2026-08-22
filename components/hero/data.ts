@@ -22,7 +22,7 @@ export const heroSlides: HeroSlideData[] = [
     category: "Premium Signage",
     headline: "Your brand, bigger and bolder",
     description:
-      "Design stunning outdoor banners, signs, and displays that make your business impossible to miss. Professional printing, delivered across Nigeria.",
+      "Design stunning outdoor banners, signs, and displays that make your business impossible to miss. Professional printing, delivered across the Netherlands and the UK.",
     image: "/signageslide1.png",
     imageAlt: "Premium outdoor signage and banners display",
     primaryCta: {

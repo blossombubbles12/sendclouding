@@ -50,11 +50,11 @@ export function AboutHero() {
         </div>
 
         <h1 className="text-hero mt-6 max-w-3xl text-white [text-shadow:0_2px_16px_rgba(0,0,0,0.35)]">
-          Making brands <span className="text-secondary">visible</span> across Nigeria
+          Making brands <span className="text-secondary">visible</span> across Europe
         </h1>
 
         <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/85 sm:text-xl">
-          From a small printing shop to Nigeria&apos;s leading print-on-demand platform.
+          From a small printing shop to Europe's leading print-on-demand platform.
           We help businesses and individuals create professional signage that gets noticed.
         </p>
       </div>

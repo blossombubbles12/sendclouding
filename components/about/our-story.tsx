@@ -34,13 +34,13 @@ export function OurStory() {
             Our Story
           </Chip>
           <h2 className="text-section-heading text-foreground">
-            From a dream to Nigeria&apos;s leading print platform
+            From a dream to Europe's leading print platform
           </h2>
           <p className="text-body mt-6 text-lg">
-            Signages.ng began with a simple belief: every Nigerian business, no matter
+            Signages.ng began with a simple belief: every business, no matter
             its size, deserves access to professional-quality printing and signage. What
             started as a small print shop has grown into a full-service print-on-demand
-            platform trusted by thousands of businesses across the country.
+            platform trusted by thousands of businesses across the Netherlands and the UK.
           </p>
           <ul className="mt-8 space-y-4">
             {highlights.map((point) => (

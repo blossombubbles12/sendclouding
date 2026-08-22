@@ -117,7 +117,7 @@ export function ContactForm() {
                     type="tel"
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
-                    placeholder="+234 800 000 0000"
+                    placeholder="+31 20 000 0000"
                     autoComplete="tel"
                   />
                 </div>

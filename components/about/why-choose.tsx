@@ -35,7 +35,7 @@ const features = [
   {
     icon: Truck,
     title: "Nationwide Delivery",
-    description: "Fast, reliable shipping to every state across Nigeria.",
+    description: "Fast, reliable shipping to every region across the Netherlands and the UK.",
   },
   {
     icon: Headset,
@@ -51,7 +51,7 @@ export function WhyChoose() {
         <SectionHeading
           eyebrow="Why Choose Signages.ng"
           title="Professional printing you can rely on"
-          description="From design to delivery, we set the standard for quality print-on-demand in Nigeria."
+          description="From design to delivery, we set the standard for quality print-on-demand in Europe."
         />
       </Reveal>
       <Grid cols={3} gap="lg" className="mt-14">

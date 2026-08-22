@@ -34,7 +34,7 @@ export const SEOSettings: GlobalConfig = {
       name: "defaultKeywords",
       type: "text",
       label: "Default Keywords",
-      defaultValue: "aquabest, water, pastries, premium water, fresh pastries, nigeria, lagos",
+      defaultValue: "aquabest, water, pastries, premium water, fresh pastries, netherlands, united kingdom, amsterdam, london",
       admin: {
         description: "Comma-separated keywords",
       },

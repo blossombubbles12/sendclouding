@@ -16,6 +16,8 @@ import config from "@payload-config";
 import { getPrintProvider } from "./providers";
 import type { PrintProviderName, ProductionStatus } from "./types";
 import { INITIAL_STATUS, PRODUCTION_STATUSES, TERMINAL_STATUSES } from "./types";
+import type { ProductionJob } from "@/payload-types";
+import type { Order } from "@/payload-types";
 
 type PayloadClient = Awaited<ReturnType<typeof getPayload>>;
 
@@ -70,7 +72,12 @@ export async function createJobForOrder(orderId: string): Promise<CreateJobResul
     overrideAccess: true,
   });
   if (existing.docs.length > 0) {
-    return { created: false, skipped: true, reason: "Job already exists", job: existing.docs[0] };
+    return {
+      created: false,
+      skipped: true,
+      reason: "Job already exists",
+      job: existing.docs[0] as unknown as Record<string, unknown>,
+    };
   }
 
   const orderNumber = (order.orderNumber as string) || orderId;
@@ -81,7 +88,7 @@ export async function createJobForOrder(orderId: string): Promise<CreateJobResul
     overrideAccess: true,
     data: {
       jobNumber,
-      order: orderId,
+      order: Number(orderId),
       status: INITIAL_STATUS,
       itemCount: items.length,
       items: items.map((it) => mapItem(it)),
@@ -93,7 +100,7 @@ export async function createJobForOrder(orderId: string): Promise<CreateJobResul
           at: new Date().toISOString(),
         },
       ],
-    },
+    } as unknown as ProductionJob,
   });
 
   return { created: true, job: job as unknown as Record<string, unknown>, skipped: false };
@@ -337,7 +344,7 @@ async function syncOrderStatus(payload: Payload, orderRef: unknown, status: stri
       collection: "orders",
       id: String(orderId),
       overrideAccess: true,
-      data: { status },
+      data: { status: status as Order["status"] },
     });
   } catch {
     /* non-fatal */

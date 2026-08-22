@@ -19,7 +19,10 @@ export type SectionBackgroundType =
   | "mesh"
   | "organic"
   | "splash"
-  | "band";
+  | "band"
+  | "grid"
+  | "route"
+  | "cloud";
 
 const classByVariant: Record<SectionBackgroundType, string> = {
   radial: "bg-pattern-radial",
@@ -30,6 +33,9 @@ const classByVariant: Record<SectionBackgroundType, string> = {
   organic: "bg-pattern-organic",
   splash: "bg-pattern-splash",
   band: "bg-pattern-band",
+  grid: "bg-pattern-grid",
+  route: "bg-pattern-route",
+  cloud: "bg-pattern-cloud",
 };
 
 export interface SectionBackgroundProps extends React.HTMLAttributes<HTMLDivElement> {

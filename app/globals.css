@@ -2,46 +2,50 @@
 @plugin "tailwindcss-animate";
 
 @theme inline {
-  /* ── Primary: Deep Ink ── */
-  --color-primary: #18181B;
-  --color-primary-50: #F4F4F5;
-  --color-primary-100: #E4E4E7;
-  --color-primary-200: #D4D4D8;
-  --color-primary-300: #A1A1AA;
-  --color-primary-400: #71717A;
-  --color-primary-500: #52525B;
-  --color-primary-600: #3F3F46;
-  --color-primary-700: #27272A;
-  --color-primary-800: #1F1F23;
-  --color-primary-900: #18181B;
+  /* ── Send Clouding Brand Colors ── */
+  /* Primary: Deep Navy — trust, technology, depth */
+  --color-primary: #0F172A;
+  --color-primary-50: #F8FAFC;
+  --color-primary-100: #F1F5F9;
+  --color-primary-200: #E2E8F0;
+  --color-primary-300: #CBD5E1;
+  --color-primary-400: #94A3B8;
+  --color-primary-500: #64748B;
+  --color-primary-600: #475569;
+  --color-primary-700: #334155;
+  --color-primary-800: #1E293B;
+  --color-primary-900: #0F172A;
+  --color-primary-950: #020617;
 
-  /* ── Secondary: Crimson Red (Primary CTA) ── */
-  --color-secondary: #CB3438;
-  --color-secondary-50: #FEF2F3;
-  --color-secondary-100: #FCD8DA;
-  --color-secondary-200: #F8ABAF;
-  --color-secondary-300: #F27A7F;
-  --color-secondary-400: #E04D53;
-  --color-secondary-500: #CB3438;
-  --color-secondary-600: #B22A2E;
-  --color-secondary-700: #8E2225;
-  --color-secondary-800: #6B1A1C;
-  --color-secondary-900: #471113;
+  /* Secondary: Electric Blue — speed, digital, tracking, sky */
+  --color-secondary: #0EA5E9;
+  --color-secondary-50: #F0F9FF;
+  --color-secondary-100: #E0F2FE;
+  --color-secondary-200: #BAE6FD;
+  --color-secondary-300: #7DD3FC;
+  --color-secondary-400: #38BDF8;
+  --color-secondary-500: #0EA5E9;
+  --color-secondary-600: #0284C7;
+  --color-secondary-700: #0369A1;
+  --color-secondary-800: #075985;
+  --color-secondary-900: #0C4A6E;
+  --color-secondary-950: #082F49;
 
-  /* ── Accent: Design Indigo ── */
-  --color-accent: #6366F1;
-  --color-accent-50: #EEF2FF;
-  --color-accent-100: #E0E7FF;
-  --color-accent-200: #C7D2FE;
-  --color-accent-300: #A5B4FC;
-  --color-accent-400: #818CF8;
-  --color-accent-500: #6366F1;
-  --color-accent-600: #4F46E5;
-  --color-accent-700: #4338CA;
-  --color-accent-800: #3730A3;
-  --color-accent-900: #312E81;
+  /* Accent: Emerald Green — delivery success, movement, "go" */
+  --color-accent: #10B981;
+  --color-accent-50: #ECFDF5;
+  --color-accent-100: #D1FAE5;
+  --color-accent-200: #A7F3D0;
+  --color-accent-300: #6EE7B7;
+  --color-accent-400: #34D399;
+  --color-accent-500: #10B981;
+  --color-accent-600: #059669;
+  --color-accent-700: #047857;
+  --color-accent-800: #065F46;
+  --color-accent-900: #064E3B;
+  --color-accent-950: #022C22;
 
-  /* ── Highlight: Amber Gold ── */
+  /* Highlight: Warm Amber — attention, alerts, in-transit */
   --color-highlight: #F59E0B;
   --color-highlight-50: #FFFBEB;
   --color-highlight-100: #FEF3C7;
@@ -54,6 +58,14 @@
   --color-highlight-800: #92400E;
   --color-highlight-900: #78350F;
 
+  /* Status Colors */
+  --color-status-pending: #F59E0B;
+  --color-status-picked-up: #0EA5E9;
+  --color-status-in-transit: #6366F1;
+  --color-status-out-for-delivery: #F97316;
+  --color-status-delivered: #10B981;
+  --color-status-exception: #EF4444;
+
   /* ── Semantic tokens ── */
   --color-background: #FFFFFF;
   --color-foreground: #0F172A;
@@ -65,7 +77,7 @@
   --color-muted-foreground: #64748B;
   --color-border: #E2E8F0;
   --color-input: #E2E8F0;
-  --color-ring: #6366F1;
+  --color-ring: #0EA5E9;
   --color-destructive: #EF4444;
   --color-destructive-foreground: #FFFFFF;
 
@@ -86,6 +98,8 @@
   --animate-fade-up: fade-up 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   --animate-float-subtle: float-subtle 6s ease-in-out infinite;
   --animate-shimmer: shimmer 2s infinite;
+  --animate-pulse-soft: pulse-soft 3s ease-in-out infinite;
+  --animate-track-progress: track-progress 1.5s ease-out forwards;
 }
 
 @keyframes fade-in {
@@ -121,6 +135,16 @@
 @keyframes shimmer {
   0% { background-position: -200% 0; }
   100% { background-position: 200% 0; }
+}
+
+@keyframes pulse-soft {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+@keyframes track-progress {
+  from { width: 0%; }
+  to { width: var(--progress-width, 100%); }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -207,13 +231,18 @@
   }
 
   /* ── Interactive utilities ── */
+  label.required::after {
+    content: " *";
+    color: var(--color-destructive);
+  }
+
   .hover-lift {
     transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .hover-lift:hover {
     transform: translateY(-4px);
-    box-shadow: 0 20px 48px -16px rgb(203 52 56 / 0.2);
+    box-shadow: 0 20px 48px -16px rgb(14 165 233 / 0.2);
   }
 
   .glass {
@@ -276,7 +305,7 @@
     color: var(--color-secondary-600);
     text-decoration: underline;
     text-underline-offset: 3px;
-    text-decoration-color: rgb(203 52 56 / 0.3);
+    text-decoration-color: rgb(14 165 233 / 0.3);
     transition: color 0.2s ease, text-decoration-color 0.2s ease;
   }
 
@@ -305,7 +334,7 @@
     padding: 1.5rem 1.75rem 1.5rem 1.75rem;
     border-radius: 1rem;
     background: linear-gradient(135deg, var(--color-secondary-50), var(--color-accent-50));
-    border: 1px solid rgb(99 102 241 / 0.12);
+    border: 1px solid rgb(16 185 129 / 0.12);
     font-size: 1.25rem;
     font-weight: 500;
     line-height: 1.6;
@@ -329,7 +358,7 @@
     width: 100%;
     height: auto;
     border-radius: 1.25rem;
-    box-shadow: 0 20px 40px -20px rgb(99 102 241 / 0.25);
+    box-shadow: 0 20px 40px -20px rgb(14 165 233 / 0.25);
   }
 
   .article-content figcaption {
@@ -394,7 +423,7 @@
   }
 
   /* ═══════════════════════════════════════════════════════
-     Decorative section backgrounds (Signages.ng palette)
+     Send Clouding — Decorative section backgrounds
      ═══════════════════════════════════════════════════════ */
   .bg-pattern-radial,
   .bg-pattern-dots,
@@ -404,13 +433,15 @@
   .bg-pattern-organic,
   .bg-pattern-splash,
   .bg-pattern-band,
-  .bg-pattern-grid {
+  .bg-pattern-grid,
+  .bg-pattern-route,
+  .bg-pattern-cloud {
     position: relative;
     overflow: hidden;
     isolation: isolate;
   }
 
-  /* Soft radial orange/indigo glow (Hero) */
+  /* Soft radial blue/emerald glow (Hero) */
   .bg-pattern-radial::before {
     content: "";
     position: absolute;
@@ -418,25 +449,53 @@
     z-index: -1;
     pointer-events: none;
     background:
-      radial-gradient(90rem 50rem at 15% -10%, rgb(203 52 56 / 0.08), transparent 55%),
-      radial-gradient(70rem 44rem at 88% -4%, rgb(99 102 241 / 0.07), transparent 50%),
+      radial-gradient(90rem 50rem at 15% -10%, rgb(14 165 233 / 0.08), transparent 55%),
+      radial-gradient(70rem 44rem at 88% -4%, rgb(16 185 129 / 0.07), transparent 50%),
       radial-gradient(55rem 36rem at 88% 105%, rgb(245 158 11 / 0.05), transparent 60%);
   }
 
-  /* Fine dot grid (Testimonials) */
+  /* Fine dot grid (Testimonials/Trust) */
   .bg-pattern-dots::before {
     content: "";
     position: absolute;
     inset: 0;
     z-index: -1;
     pointer-events: none;
-    background-image: radial-gradient(rgb(203 52 56 / 0.06) 1.1px, transparent 1.1px);
+    background-image: radial-gradient(rgb(14 165 233 / 0.06) 1.1px, transparent 1.1px);
     background-size: 22px 22px;
     -webkit-mask-image: linear-gradient(to bottom, transparent, black 16%, black 84%, transparent);
     mask-image: linear-gradient(to bottom, transparent, black 16%, black 84%, transparent);
   }
 
-  /* Thin geometric line */
+  /* Subtle route/path lines (How it works, Tracking) */
+  .bg-pattern-route::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background-image:
+      linear-gradient(90deg, rgb(14 165 233 / 0.04) 1px, transparent 1px),
+      linear-gradient(rgb(14 165 233 / 0.04) 1px, transparent 1px);
+    background-size: 80px 80px;
+    -webkit-mask-image: linear-gradient(to bottom, transparent, black 20%, black 80%, transparent);
+    mask-image: linear-gradient(to bottom, transparent, black 20%, black 80%, transparent);
+  }
+
+  /* Soft cloud-like blobs (Hero, Services) */
+  .bg-pattern-cloud::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background:
+      radial-gradient(40rem 30rem at 10% 20%, rgb(14 165 233 / 0.06), transparent 60%),
+      radial-gradient(35rem 25rem at 90% 80%, rgb(16 185 129 / 0.05), transparent 60%),
+      radial-gradient(30rem 20rem at 50% 110%, rgb(245 158 11 / 0.04), transparent 55%);
+  }
+
+  /* Thin geometric line (Tech sections) */
   .bg-pattern-geometric::before {
     content: "";
     position: absolute;
@@ -445,8 +504,8 @@
     pointer-events: none;
     background-image: repeating-linear-gradient(
       135deg,
-      rgb(99 102 241 / 0.04) 0,
-      rgb(99 102 241 / 0.04) 1px,
+      rgb(14 165 233 / 0.04) 0,
+      rgb(14 165 233 / 0.04) 1px,
       transparent 1px,
       transparent 26px
     );
@@ -454,20 +513,7 @@
     mask-image: linear-gradient(to bottom, transparent, black 22%, black 78%, transparent);
   }
 
-  /* Subtle flowing design waves */
-  .bg-pattern-wave::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    pointer-events: none;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='140' viewBox='0 0 160 140'%3E%3Cg fill='none' stroke='%23CB3438' stroke-width='2' opacity='0.12'%3E%3Cpath d='M-20 70 C 20 40 60 40 100 70 S 180 100 220 70'/%3E%3Cpath d='M-20 110 C 20 80 60 80 100 110 S 180 140 220 110'/%3E%3Cpath d='M-20 30 C 20 0 60 0 100 30 S 180 60 220 30'/%3E%3C/g%3E%3C/svg%3E");
-    background-size: 160px 140px;
-    -webkit-mask-image: linear-gradient(to bottom, transparent, black 30%, black 70%, transparent);
-    mask-image: linear-gradient(to bottom, transparent, black 30%, black 70%, transparent);
-  }
-
-  /* Mesh gradient */
+  /* Mesh gradient (CTA sections) */
   .bg-pattern-mesh::before {
     content: "";
     position: absolute;
@@ -475,12 +521,12 @@
     z-index: -1;
     pointer-events: none;
     background:
-      radial-gradient(65rem 48rem at 80% 6%, rgb(203 52 56 / 0.08), transparent 55%),
-      radial-gradient(50rem 36rem at 6% 88%, rgb(99 102 241 / 0.07), transparent 55%),
+      radial-gradient(65rem 48rem at 80% 6%, rgb(14 165 233 / 0.08), transparent 55%),
+      radial-gradient(50rem 36rem at 6% 88%, rgb(16 185 129 / 0.07), transparent 55%),
       radial-gradient(55rem 34rem at 52% 96%, rgb(245 158 11 / 0.04), transparent 60%);
   }
 
-  /* Warm off-white with soft orange/indigo blobs */
+  /* Warm off-white with soft blue/emerald blobs */
   .bg-pattern-organic::before {
     content: "";
     position: absolute;
@@ -488,39 +534,9 @@
     z-index: -1;
     pointer-events: none;
     background:
-      radial-gradient(28rem 28rem at 12% 20%, rgb(203 52 56 / 0.06), transparent 62%),
-      radial-gradient(32rem 32rem at 88% 84%, rgb(99 102 241 / 0.05), transparent 60%),
+      radial-gradient(28rem 28rem at 12% 20%, rgb(14 165 233 / 0.06), transparent 62%),
+      radial-gradient(32rem 32rem at 88% 84%, rgb(16 185 129 / 0.05), transparent 60%),
       radial-gradient(44rem 40rem at 84% 10%, rgb(245 158 11 / 0.04), transparent 60%);
-  }
-
-  /* Scattered splash accents (Newsletter) */
-  .bg-pattern-splash::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    pointer-events: none;
-    background:
-      radial-gradient(75rem 55rem at 40% -8%, rgb(203 52 56 / 0.06), transparent 55%),
-      radial-gradient(55rem 44rem at 88% 22%, rgb(99 102 241 / 0.05), transparent 55%);
-  }
-
-  .bg-pattern-splash::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    pointer-events: none;
-    background-image:
-      radial-gradient(circle 28px at 12% 28%, rgb(203 52 56 / 0.13), transparent 58%),
-      radial-gradient(circle 36px at 80% 10%, rgb(99 102 241 / 0.11), transparent 58%),
-      radial-gradient(circle 24px at 52% 72%, rgb(203 52 56 / 0.12), transparent 58%),
-      radial-gradient(circle 32px at 22% 78%, rgb(99 102 241 / 0.09), transparent 58%),
-      radial-gradient(circle 40px at 88% 68%, rgb(245 158 11 / 0.08), transparent 58%),
-      radial-gradient(circle 20px at 42% 38%, rgb(203 52 56 / 0.11), transparent 58%),
-      radial-gradient(circle 26px at 68% 48%, rgb(99 102 241 / 0.08), transparent 58%);
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
   }
 
   /* Primary band with soft glow (Stats / dark sections) */
@@ -532,8 +548,8 @@
     pointer-events: none;
     background:
       radial-gradient(90% 140% at 50% -20%, rgb(255 255 255 / 0.08), transparent 60%),
-      radial-gradient(80rem 34rem at 100% 110%, rgb(203 52 56 / 0.2), transparent 60%),
-      radial-gradient(60rem 40rem at 0% 100%, rgb(99 102 241 / 0.12), transparent 60%);
+      radial-gradient(80rem 34rem at 100% 110%, rgb(14 165 233 / 0.15), transparent 60%),
+      radial-gradient(60rem 40rem at 0% 100%, rgb(16 185 129 / 0.12), transparent 60%);
   }
 
   /* Subtle design grid pattern */
@@ -544,11 +560,69 @@
     z-index: -1;
     pointer-events: none;
     background-image:
-      linear-gradient(rgb(99 102 241 / 0.04) 1px, transparent 1px),
-      linear-gradient(90deg, rgb(99 102 241 / 0.04) 1px, transparent 1px);
+      linear-gradient(rgb(14 165 233 / 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(14 165 233 / 0.04) 1px, transparent 1px);
     background-size: 64px 64px;
     -webkit-mask-image: linear-gradient(to bottom, transparent, black 20%, black 80%, transparent);
     mask-image: linear-gradient(to bottom, transparent, black 20%, black 80%, transparent);
+  }
+
+  /* ── Send Clouding specific utilities ── */
+  .status-badge {
+    @apply inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-medium;
+  }
+
+  .status-pending,
+  .status-created,
+  .status-pickup-scheduled { @apply bg-amber-50 text-amber-700 border border-amber-200; }
+  .status-picked-up { @apply bg-sky-50 text-sky-700 border border-sky-200; }
+  .status-in-transit { @apply bg-indigo-50 text-indigo-700 border border-indigo-200; }
+  .status-out-for-delivery { @apply bg-orange-50 text-orange-700 border border-orange-200; }
+  .status-delivered { @apply bg-emerald-50 text-emerald-700 border border-emerald-200; }
+  .status-delayed { @apply bg-amber-50 text-amber-800 border border-amber-200; }
+  .status-exception { @apply bg-red-50 text-red-700 border border-red-200; }
+  .status-cancelled,
+  .status-returned { @apply bg-slate-100 text-slate-600 border border-slate-200; }
+
+  .timeline-stage-completed { @apply text-secondary-700; }
+  .timeline-stage-current { @apply text-foreground; }
+  .timeline-stage-upcoming { @apply text-muted-foreground/60; }
+
+  .tracking-timeline {
+    @apply relative pl-6 border-l-2 border-border;
+  }
+
+  .tracking-timeline::before {
+    content: "";
+    @apply absolute left-[-5px] top-0 h-full w-0.5 bg-gradient-to-b from-sky-400 via-indigo-500 to-emerald-500;
+  }
+
+  .timeline-dot {
+    @apply absolute left-[-10px] top-1.5 h-3.5 w-3.5 rounded-full border-2 border-white;
+  }
+
+  .route-line {
+    @apply absolute left-1/2 top-0 bottom-0 w-0.5 -translate-x-1/2 bg-gradient-to-b from-sky-400 via-indigo-500 to-emerald-500;
+  }
+
+  .input-tracking {
+    @apply w-full min-w-0 h-12 sm:h-14 rounded-xl border-2 border-border bg-white px-4 sm:px-6 py-2.5 sm:py-3 text-base sm:text-lg font-mono tracking-wider placeholder:text-muted-foreground focus:border-secondary focus:outline-none focus:ring-2 focus:ring-secondary/20 transition-all;
+  }
+
+  .card-premium {
+    @apply rounded-2xl border-2 border-primary-200 bg-white p-6 transition-all duration-300 hover:border-secondary-300 hover:shadow-lg;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-secondary px-6 py-3 text-sm font-semibold text-white transition-all hover:bg-secondary-600 hover:shadow-lg hover:shadow-secondary/25 active:scale-[0.98];
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-border bg-white px-6 py-3 text-sm font-semibold text-foreground transition-all hover:bg-muted hover:border-secondary/50 active:scale-[0.98];
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold text-foreground transition-all hover:bg-muted active:scale-[0.98];
   }
 }
 

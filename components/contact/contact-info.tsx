@@ -64,14 +64,14 @@ export function ContactInfo({
     {
       icon: Phone,
       title: "Call Us",
-      value: phone || "+234 800 000 0000",
+      value: phone || "+31 20 000 0000",
       note: "Speak directly with our team",
       href: phone ? `tel:${phone.replace(/[\s-]/g, "")}` : undefined,
     },
     {
       icon: MapPin,
       title: "Visit Us",
-      value: fullAddress || "Lagos, Nigeria",
+      value: fullAddress || "Amsterdam, Netherlands",
       note: "Come see our facility",
     },
     {

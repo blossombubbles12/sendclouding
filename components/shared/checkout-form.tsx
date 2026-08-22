@@ -56,7 +56,7 @@ export function CheckoutForm() {
   const [city, setCity] = React.useState("");
   const [state, setState] = React.useState("");
   const [postalCode, setPostalCode] = React.useState("");
-  const [country, setCountry] = React.useState("Nigeria");
+  const [country, setCountry] = React.useState("Netherlands");
   const [notes, setNotes] = React.useState("");
 
   // Payment methods
@@ -246,7 +246,7 @@ export function CheckoutForm() {
                   </div>
                   <div className="col-span-2">
                     <Label htmlFor="phone">Phone *</Label>
-                    <Input id="phone" type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="+234 800 000 0000" required />
+                    <Input id="phone" type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="+31 20 000 0000" required />
                   </div>
                 </div>
               </div>
@@ -261,15 +261,15 @@ export function CheckoutForm() {
                   </div>
                   <div>
                     <Label htmlFor="city">City *</Label>
-                    <Input id="city" value={city} onChange={(e) => setCity(e.target.value)} placeholder="Lagos" required />
+                    <Input id="city" value={city} onChange={(e) => setCity(e.target.value)} placeholder="Amsterdam" required />
                   </div>
                   <div>
                     <Label htmlFor="state">State *</Label>
-                    <Input id="state" value={state} onChange={(e) => setState(e.target.value)} placeholder="Lagos" required />
+                    <Input id="state" value={state} onChange={(e) => setState(e.target.value)} placeholder="Amsterdam" required />
                   </div>
                   <div>
                     <Label htmlFor="postalCode">Postal Code</Label>
-                    <Input id="postalCode" value={postalCode} onChange={(e) => setPostalCode(e.target.value)} placeholder="100001" />
+                    <Input id="postalCode" value={postalCode} onChange={(e) => setPostalCode(e.target.value)} placeholder="1011 AB" />
                   </div>
                   <div>
                     <Label htmlFor="country">Country *</Label>

@@ -10,7 +10,7 @@ const cards = [
     eyebrow: "Our Mission",
     title: "Mission",
     description:
-      "Make professional printing and signage accessible to every business and individual in Nigeria, with quality that rivals global standards.",
+      "Make professional printing and signage accessible to every business and individual in Europe, with quality that rivals global standards.",
     tone: "secondary",
   },
   {
@@ -18,7 +18,7 @@ const cards = [
     eyebrow: "Our Vision",
     title: "Vision",
     description:
-      "Become Africa's most trusted print-on-demand platform, empowering brands to express themselves through premium printed products.",
+      "Become Europe's most trusted print-on-demand platform, empowering brands to express themselves through premium printed products.",
     tone: "accent",
   },
 ] as const;

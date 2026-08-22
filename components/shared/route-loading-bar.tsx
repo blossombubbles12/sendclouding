@@ -12,6 +12,10 @@ import { usePathname, useSearchParams } from "next/navigation";
  * calls (e.g. after a form submit) by patching the History API, since
  * that's what the Next.js App Router ultimately calls under the hood for
  * every client-side navigation.
+ *
+ * State updates are always deferred off the History API call stack so we
+ * never schedule React updates during useInsertionEffect (which Next may
+ * run while calling pushState/replaceState).
  */
 function LoadingBarInner() {
   const pathname = usePathname();
@@ -20,20 +24,33 @@ function LoadingBarInner() {
   const [progress, setProgress] = useState(0);
   const tickRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const hideRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const startRafRef = useRef<number | null>(null);
   const mounted = useRef(false);
 
   useEffect(() => {
-    const start = () => {
-      if (tickRef.current) return;
-      if (hideRef.current) {
-        clearTimeout(hideRef.current);
-        hideRef.current = null;
+    const clearTick = () => {
+      if (tickRef.current) {
+        clearInterval(tickRef.current);
+        tickRef.current = null;
       }
-      setVisible(true);
-      setProgress(8);
-      tickRef.current = setInterval(() => {
-        setProgress((p) => (p < 90 ? p + Math.max(1, (90 - p) / 12) : p));
-      }, 200);
+    };
+
+    const start = () => {
+      // Defer out of any insertion-effect / History API stack.
+      if (startRafRef.current != null) return;
+      startRafRef.current = requestAnimationFrame(() => {
+        startRafRef.current = null;
+        if (tickRef.current) return;
+        if (hideRef.current) {
+          clearTimeout(hideRef.current);
+          hideRef.current = null;
+        }
+        setVisible(true);
+        setProgress(8);
+        tickRef.current = setInterval(() => {
+          setProgress((p) => (p < 90 ? p + Math.max(1, (90 - p) / 12) : p));
+        }, 200);
+      });
     };
 
     const originalPush = window.history.pushState.bind(window.history);
@@ -55,8 +72,9 @@ function LoadingBarInner() {
       window.history.pushState = originalPush;
       window.history.replaceState = originalReplace;
       window.removeEventListener("popstate", start);
-      if (tickRef.current) clearInterval(tickRef.current);
+      clearTick();
       if (hideRef.current) clearTimeout(hideRef.current);
+      if (startRafRef.current != null) cancelAnimationFrame(startRafRef.current);
     };
   }, []);
 
@@ -66,6 +84,10 @@ function LoadingBarInner() {
     if (!mounted.current) {
       mounted.current = true;
       return;
+    }
+    if (startRafRef.current != null) {
+      cancelAnimationFrame(startRafRef.current);
+      startRafRef.current = null;
     }
     if (tickRef.current) {
       clearInterval(tickRef.current);

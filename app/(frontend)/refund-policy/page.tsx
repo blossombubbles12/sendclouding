@@ -2,55 +2,108 @@ import type { Metadata } from "next";
 import { PolicyPage } from "@/components/policy/policy-page";
 
 export const metadata: Metadata = {
-  title: "Refund & Return Policy | AquaBest Brands",
-  description:
-    "Learn about AquaBest Brands refund and return policy for water, bakery products, and defective or damaged deliveries.",
+  title: "Refund & Claims Policy | Send Clouding",
+  description: "Learn about Send Clouding's refund policy for shipping services, damage claims, lost packages, and service guarantees.",
+  openGraph: {
+    title: "Refund & Claims Policy | Send Clouding",
+    description: "We stand behind our deliveries. If something goes wrong, here's how we make it right.",
+    type: "website",
+  },
 };
 
 export default function RefundPolicyPage() {
   return (
     <PolicyPage
-      title="Refund & Return Policy"
-      description="We stand behind the quality of our products. If something isn't right, here's how we make it right."
+      title="Refund & Claims Policy"
+      description="We stand behind our deliveries. If something goes wrong — lost, damaged, or late — here's how we make it right."
       lastUpdated="August 2026"
       sections={[
         {
-          heading: "1. Our Commitment",
-          body: "Your satisfaction is our priority. If you receive a damaged, defective, or incorrect product, we will replace it or issue a refund — no hassle.",
+          heading: "1. Our Delivery Guarantee",
+          body: "We commit to delivering your packages on time and intact. If we fail, we have clear remedies: refunds for service failures, claims for loss/damage, and proactive communication throughout.",
         },
         {
-          heading: "2. Eligibility",
-          body: "To be eligible for a return or refund, please contact us within 24 hours of delivery for perishable bakery items and within 48 hours for water products.",
+          heading: "2. Service Failure Refunds",
+          body: "You may be eligible for a shipping cost refund (base rate only, not add-ons) in these cases:",
           items: [
-            "Report the issue with a photo where possible",
-            "Provide your order number and details",
-            "Items must be unused and in their original packaging",
+            "Pickup Missed: Driver doesn't arrive within scheduled 2-hour window → 100% refund",
+            "Late Delivery: Delivered beyond guaranteed window for Express/Same-Day → 50% refund",
+            "No Tracking Updates: No scan for 48+ hours after pickup → 100% refund",
+            "Wrong Delivery: Delivered to incorrect address → 100% refund + return shipping",
           ],
         },
         {
-          heading: "3. Perishable Products",
-          body: "Given the perishable nature of breads, pastries, cakes, and confectioneries, refunds and replacements are assessed on a case-by-case basis. If a product arrives stale, damaged, or not as described, we will replace it at no cost.",
-        },
-        {
-          heading: "4. Water Products",
-          body: "Damaged or leaking bottles will be replaced free of charge. If you receive the wrong product or quantity, we will arrange a replacement or refund the affected amount.",
-        },
-        {
-          heading: "5. How to Request a Refund",
-          body: "Contact our support team with your order number and a description of the issue. We will review your request and respond within 1–2 business days.",
+          heading: "3. Damage & Loss Claims",
+          body: "Every shipment includes €150 free coverage. Additional insurance available up to €25,000 (0.5% of value above €150).",
           items: [
-            "Email: hello@aquabestbrands.com",
-            "Phone: +234 800 000 0000",
-            "Include your order number in all communications",
+            "File within 7 calendar days of delivery (or expected delivery date for lost)",
+            "Provide: tracking number, photos of damage/packaging, itemized value declaration",
+            "External packaging must be intact for damage claims (shows transit damage)",
+            "Claims reviewed within 48 hours (standard) or 5-7 days (complex/high-value)",
+            "Approved claims paid to original payment method within 5 business days",
+            "Maximum liability: declared value or €25,000, whichever is lower",
           ],
         },
         {
-          heading: "6. Refund Processing",
-          body: "Approved refunds are processed to the original payment method within 5–10 business days, depending on your bank or payment provider.",
+          heading: "4. Claim Exclusions",
+          body: "We are not liable for:",
+          items: [
+            "Inadequate packaging (sender's responsibility to protect contents)",
+            "Prohibited items shipped in violation of terms",
+            "Consequential/indirect damages (lost profits, missed deadlines, etc.)",
+            "Delay caused by: incorrect address, recipient unavailable, security checks, weather, force majeure",
+            "Normal wear & tear, inherent vice (items that naturally degrade)",
+            "Shipments without declared value exceeding free coverage",
+            "Claims filed after 7-day window",
+          ],
         },
         {
-          heading: "7. Non-Returnable Items",
-          body: "For hygiene and safety reasons, opened food and beverage products cannot be returned unless they are defective or incorrect.",
+          heading: "5. Cash on Delivery (COD) Refunds",
+          body: "If COD delivery fails after 3 attempts: package returns to sender. Sender pays return shipping. COD fee (€3) non-refundable. If recipient refuses package: same process. If sender cancels before pickup: full refund including COD fee.",
+        },
+        {
+          heading: "6. Subscription & Plan Refunds",
+          body: "Business plan (€99/month): cancel anytime, no partial-month refunds. Enterprise: per contract terms (typically 12-month commitment). Pay As You Go: no subscription, pay per shipment only.",
+        },
+        {
+          heading: "7. How to File a Claim",
+          body: "Three ways to start a claim:",
+          items: [
+            "Tracking Page: Click 'Report Issue' on any shipment",
+            "Email: claims@sendclouding.com with tracking number, photos, description",
+            "Phone: +31 20 000 0000 (claims option)",
+          ],
+        },
+        {
+          heading: "8. Claim Documentation Requirements",
+          body: "For fastest processing, include:",
+          items: [
+            "Tracking number (SC-EU-XXXXXXXX)",
+            "Clear photos: damaged item, packaging (all sides), shipping label",
+            "Itemized value: description, quantity, unit price, total (with receipts if available)",
+            "Recipient statement (if damage discovered on delivery)",
+            "Police report (for theft/loss during transit, if applicable)",
+          ],
+        },
+        {
+          heading: "9. Dispute Resolution",
+          body: "If you disagree with a claim decision:",
+          items: [
+            "Request review within 14 days — escalated to claims manager",
+            "If unresolved: mediation via the Amsterdam Chamber of Commerce",
+            "Final: arbitration in Amsterdam under Dutch Arbitration Act",
+            "We cover mediation/arbitration costs for claims under €1,000",
+          ],
+        },
+        {
+          heading: "10. Contact Claims Team",
+          body: "Need help with a claim?",
+          items: [
+            "Email: claims@sendclouding.com",
+            "Phone: +31 20 000 0000 (option 3)",
+            "Hours: Mon–Fri 8AM–7PM, Sat 9AM–4PM (CET)",
+            "Response time: 2 hours (business hours), 24 hours (after hours)",
+          ],
         },
       ]}
     />

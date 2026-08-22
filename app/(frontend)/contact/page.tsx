@@ -1,58 +1,16 @@
 import type { Metadata } from "next";
-import {
-  ContactHero,
-  ContactInfo,
-  ContactForm,
-  ContactCTA,
-} from "@/components/contact";
-import { Newsletter } from "@/components/shared/newsletter";
-import { getSiteSettings } from "@/lib/get-globals";
-
-export const revalidate = 60;
+import ContactClient from "./contact-client";
 
 export const metadata: Metadata = {
-  title: "Contact Us | AquaBest Brands",
-  description:
-    "Get in touch with AquaBest Brands. Questions, wholesale orders, or feedback — reach out to our friendly team and we'll respond promptly.",
+  title: "Contact Us | Send Clouding",
+  description: "Get in touch with Send Clouding. Questions about shipping, business partnerships, API integration, or support — our team is ready to help.",
   openGraph: {
-    title: "Contact Us | AquaBest Brands",
-    description: "Reach out to AquaBest Brands for questions, wholesale orders, or feedback.",
+    title: "Contact Us | Send Clouding",
+    description: "Modern logistics technology platform. Reach out for shipping questions, business partnerships, or API integration.",
     type: "website",
   },
 };
 
-export default async function ContactPage() {
-  const siteSettings = await getSiteSettings();
-
-  const contactEmail =
-    (siteSettings.contactEmail as string | undefined) || "info@aquaBestbrands.com";
-  const contactPhone = siteSettings.contactPhone as string | undefined;
-  const address = siteSettings.address as
-    | { street?: string; city?: string; state?: string; postalCode?: string; country?: string }
-    | null
-    | undefined;
-  const socialLinks = siteSettings.socialLinks as
-    | {
-        facebook?: string;
-        instagram?: string;
-        twitter?: string;
-        linkedin?: string;
-      }
-    | null
-    | undefined;
-
-  return (
-    <>
-      <ContactHero />
-      <ContactInfo
-        email={contactEmail}
-        phone={contactPhone}
-        address={address}
-        socialLinks={socialLinks}
-      />
-      <ContactForm />
-      <ContactCTA />
-      <Newsletter />
-    </>
-  );
+export default function ContactPage() {
+  return <ContactClient />;
 }

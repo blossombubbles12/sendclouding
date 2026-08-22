@@ -29,7 +29,7 @@ export function CompanyOverview() {
             We make your brand visible
           </h2>
           <p className="text-body mt-6 text-lg">
-            Signages.ng was born from a simple belief: every Nigerian business deserves
+            Signages.ng was born from a simple belief: every business deserves
             access to premium printing and signage. From startups to corporations, we
             provide the tools and quality to make your brand impossible to ignore.
           </p>
@@ -37,7 +37,7 @@ export function CompanyOverview() {
             {[
               "State-of-the-art digital and large-format printing",
               "Free online design tool with professional templates",
-              "Nationwide delivery to every state in Nigeria",
+              "Nationwide delivery across the Netherlands and the UK",
             ].map((point) => (
               <li key={point} className="flex items-start gap-3">
                 <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-secondary" aria-hidden="true" />

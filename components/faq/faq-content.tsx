@@ -17,7 +17,7 @@ const faqs = [
       },
       {
         q: "What payment methods do you accept?",
-        a: "We accept secure online payments via Paystack, including major debit/credit cards and bank transfers. All transactions are encrypted.",
+        a: "We accept secure online payments via iDEAL, cards, and bank transfer. All transactions are encrypted.",
       },
       {
         q: "Can I cancel or modify my order?",
@@ -47,7 +47,7 @@ const faqs = [
     items: [
       {
         q: "How long does delivery take?",
-        a: "Standard production takes 1-3 business days. Delivery within Lagos is 1-2 days, and nationwide delivery is 3-5 business days after production.",
+        a: "Standard production takes 1-3 business days. Delivery within Amsterdam is 1-2 days, and UK & NL-wide delivery is 3-5 business days after production.",
       },
       {
         q: "How do I track my order?",
@@ -55,7 +55,7 @@ const faqs = [
       },
       {
         q: "How much does delivery cost?",
-        a: "Delivery is free on orders over \u20A620,000 nationwide. Standard fees apply for orders below this threshold, calculated at checkout based on your location.",
+        a: "Delivery is free on orders over €120 across the Netherlands and the UK. Standard fees apply for orders below this threshold, calculated at checkout based on your location.",
       },
     ],
   },

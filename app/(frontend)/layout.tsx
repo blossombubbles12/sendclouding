@@ -1,13 +1,38 @@
 import "../globals.css";
+import type { Metadata } from "next";
 import { AnnouncementBar } from "@/components/shared/announcement-bar";
 import { Header } from "@/components/shared/header";
 import { Footer } from "@/components/shared/footer";
 import { MiniCart } from "@/components/shared/mini-cart";
 import { RouteLoadingBar } from "@/components/shared/route-loading-bar";
 import { AppProviders } from "@/providers";
-import { getSiteSettings } from "@/lib/get-globals";
+import { getSiteSettings, getSiteName, getFaviconUrl, getLogoUrl, getLogoAlt } from "@/lib/get-globals";
 
 export const revalidate = 60;
+
+export async function generateMetadata(): Promise<Metadata> {
+  const siteSettings = await getSiteSettings();
+  const siteName = getSiteName(siteSettings);
+  const faviconUrl = await getFaviconUrl(siteSettings);
+
+  return {
+    title: {
+      default: siteName,
+      template: `%s | ${siteName}`,
+    },
+    description: siteSettings?.siteDescription ?? "Modern logistics technology platform. Ship packages, track shipments in real-time, and manage deliveries with confidence.",
+    icons: {
+      icon: faviconUrl,
+      shortcut: faviconUrl,
+      apple: faviconUrl,
+    },
+    openGraph: {
+      siteName,
+      locale: "en_NL",
+      type: "website",
+    },
+  };
+}
 
 export default async function FrontendLayout({
   children,
@@ -15,10 +40,11 @@ export default async function FrontendLayout({
   children: React.ReactNode;
 }) {
   const siteSettings = await getSiteSettings();
-  const logo = siteSettings.logo as { url?: string; alt?: string } | null;
-  // DB-backed /api/media/file/… URLs fail on serverless (no local storage).
-  // A real blob URL (https://…) works — use it; otherwise serve the committed static asset.
-  const logoUrl = logo?.url && !logo.url.startsWith("/api") ? logo.url : "/logo.jpg.png";
+
+  const siteName = getSiteName(siteSettings);
+  const logoUrl = await getLogoUrl(siteSettings);
+  const faviconUrl = await getFaviconUrl(siteSettings);
+  const logoAlt = getLogoAlt(siteSettings);
 
   return (
     <AppProviders>
@@ -26,18 +52,18 @@ export default async function FrontendLayout({
       <div className="flex min-h-screen flex-col">
         <AnnouncementBar />
         <Header
-          siteName={siteSettings.siteName}
+          siteName={siteName}
           logoUrl={logoUrl}
-          logoAlt={logo?.alt ?? siteSettings.siteName}
+          logoAlt={logoAlt}
         />
         <main className="flex-1">{children}</main>
         <Footer
-          siteName={siteSettings.siteName}
-          siteDescription={siteSettings.siteDescription}
+          siteName={siteName}
+          siteDescription={siteSettings.siteDescription ?? undefined}
           logoUrl={logoUrl}
-          logoAlt={logo?.alt ?? siteSettings.siteName}
-          contactEmail={siteSettings.contactEmail}
-          contactPhone={siteSettings.contactPhone}
+          logoAlt={logoAlt}
+          contactEmail={siteSettings.contactEmail ?? undefined}
+          contactPhone={siteSettings.contactPhone ?? undefined}
           address={siteSettings.address as { city?: string; country?: string } | null}
           socialLinks={siteSettings.socialLinks as Record<string, string> | null}
         />

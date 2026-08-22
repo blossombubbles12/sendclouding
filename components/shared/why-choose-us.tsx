@@ -1,44 +1,65 @@
-import { PenTool, Palette, Printer, ShieldCheck, Truck, Sparkles } from "lucide-react";
+"use client";
+
+import * as React from "react";
+import { ShieldCheck, Zap, MapPin, Smartphone, Headphones, BarChart3, Globe, Lock, ArrowRight } from "lucide-react";
 import { Section } from "@/components/layout/section";
 import { Grid } from "@/components/layout/grid";
 import { SectionHeading } from "@/components/shared/section-heading";
 import { Reveal } from "@/components/motion/reveal";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 const reasons = [
   {
-    icon: Palette,
-    title: "Design It Yourself",
-    description:
-      "Use our free online design tool to customize any product. Upload your artwork or start from our templates.",
-  },
-  {
-    icon: Printer,
-    title: "Premium Quality Printing",
-    description:
-      "State-of-the-art digital and large-format printers using premium materials for vivid, durable results.",
-  },
-  {
-    icon: Truck,
-    title: "Fast Nationwide Delivery",
-    description:
-      "We deliver to every state in Nigeria. Track your order from production to your doorstep.",
-  },
-  {
     icon: ShieldCheck,
-    title: "Satisfaction Guaranteed",
-    description:
-      "Not happy with your print? We'll reprint or refund. Quality assurance on every single order.",
+    title: "End-to-End Visibility",
+    description: "Real-time GPS tracking from pickup to delivery. Every scan, every stop, every minute — visible on your dashboard.",
+  },
+  {
+    icon: Zap,
+    title: "Instant Quotes & Booking",
+    description: "No back-and-forth emails. Enter details, get price, book pickup in 60 seconds. Transparent pricing, no hidden fees.",
+  },
+  {
+    icon: MapPin,
+    title: "Nationwide Network",
+    description: "500+ cities and towns covered. From Amsterdam to London, Manchester to Utrecht — we reach everywhere.",
+  },
+  {
+    icon: Smartphone,
+    title: "Mobile-First Experience",
+    description: "Track, book, and manage shipments from your phone. SMS/WhatsApp notifications for every milestone.",
+  },
+  {
+    icon: Headphones,
+    title: "Dedicated Support",
+    description: "Human support via phone, chat, and email. Business accounts get a dedicated account manager.",
+  },
+  {
+    icon: BarChart3,
+    title: "Analytics & Insights",
+    description: "Delivery performance reports, cost analytics, and shipping patterns. Make data-driven logistics decisions.",
+  },
+  {
+    icon: Globe,
+    title: "API & Integrations",
+    description: "REST API, webhooks, and pre-built plugins for Shopify, WooCommerce, and custom ERPs.",
+  },
+  {
+    icon: Lock,
+    title: "Secure & Insured",
+    description: "€150 free coverage on every shipment. Optional insurance up to €25,000. Tamper-evident packaging available.",
   },
 ];
 
 export function WhyChooseUs() {
   return (
-    <Section background="snow" spacing="lg" pattern="geometric">
+    <Section background="white" spacing="lg" pattern="dots">
       <Reveal>
         <SectionHeading
-          eyebrow="Why Signages.ng"
-          title="Professional printing made simple"
-          description="We combine cutting-edge printing technology with a seamless design experience to deliver quality every time."
+          eyebrow="Why Send Clouding"
+          title="Built for modern logistics"
+          description="We combine technology, network, and service to give you shipping that just works. No surprises, no excuses."
         />
       </Reveal>
       <Grid cols={4} gap="lg" className="mt-14">

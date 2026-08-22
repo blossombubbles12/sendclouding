@@ -275,7 +275,7 @@ export const Orders: CollectionConfig = {
           name: "country",
           type: "text",
           required: true,
-          defaultValue: "Nigeria",
+          defaultValue: "Netherlands",
           label: "Country",
         },
         {

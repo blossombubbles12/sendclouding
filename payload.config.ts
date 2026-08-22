@@ -19,6 +19,9 @@ import { ShippingMethods } from "./collections/ShippingMethods";
 import { ProductTemplates } from "./collections/ProductTemplates";
 import { Designs } from "./collections/Designs";
 import { ProductionJobs } from "./collections/ProductionJobs";
+import { Shipments } from "./collections/Shipments";
+import { TrackingEvents } from "./collections/TrackingEvents";
+import { Locations } from "./collections/Locations";
 import { SiteSettings } from "./globals/SiteSettings";
 import { Header } from "./globals/Header";
 import { Footer } from "./globals/Footer";
@@ -59,13 +62,13 @@ export default buildConfig({
         Icon: "/components/graphics/Icon#Icon",
       },
       beforeNavLinks: ["/components/graphics/Nav#Nav"],
-      beforeDashboard: ["/components/dashboard/BeforeDashboard#default"],
+      beforeDashboard: ["/components/dashboard/LogisticsDashboard#default"],
     },
     importMap: {
       baseDir: path.resolve(dirname, "app/(payload)/admin"),
     },
   },
-  collections: [Users, Products, Categories, Orders, Customers, Media, ContactMessages, Posts, ShippingMethods, ProductTemplates, Designs, ProductionJobs],
+  collections: [Users, Products, Categories, Orders, Customers, Media, ContactMessages, Posts, ShippingMethods, ProductTemplates, Designs, ProductionJobs, Shipments, TrackingEvents, Locations],
   globals: [SiteSettings, Header, Footer, SEOSettings, PaymentSettings, ShippingSettings],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || "",
@@ -83,8 +86,11 @@ export default buildConfig({
         // disablePayloadAccessControl stores the direct Vercel Blob CDN URL on the
         // doc instead of a relative `/api/media/file/...` proxy path — required since
         // Vercel's serverless functions are read-only and can't proxy-stream files.
+        // Only enable this when blob storage is actually active.
         media: {
-          disablePayloadAccessControl: true,
+          ...(process.env.BLOB_READ_WRITE_TOKEN
+            ? { disablePayloadAccessControl: true as const }
+            : {}),
         },
       },
     }),

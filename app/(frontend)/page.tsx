@@ -1,15 +1,13 @@
-import { Suspense } from "react";
 import { Hero } from "@/components/shared/hero";
-import { HeroSlider } from "@/components/hero/HeroSlider";
-import { FeaturedCategoriesLive } from "@/components/shared/featured-categories-live";
-import { FeaturedProductsLive } from "@/components/shared/featured-products-live";
+import { TrackingHero } from "@/components/shared/tracking-hero";
+import { HowItWorks } from "@/components/shared/how-it-works";
+import { Services } from "@/components/shared/services";
+import { TrackingPreview } from "@/components/shared/tracking-preview";
 import { WhyChooseUs } from "@/components/shared/why-choose-us";
-import { CompanyOverview } from "@/components/shared/company-overview";
-import { ProductHighlights } from "@/components/shared/product-highlights";
-import { Stats } from "@/components/shared/stats";
+import { Coverage } from "@/components/shared/coverage";
+import { BusinessSolutions } from "@/components/shared/business-solutions";
 import { Testimonials } from "@/components/shared/testimonials";
-import { LatestArticlesLive } from "@/components/shared/latest-articles-live";
-import { Newsletter } from "@/components/shared/newsletter";
+import { FAQ } from "@/components/shared/faq";
 import { CTA } from "@/components/shared/cta";
 
 export const revalidate = 60;
@@ -17,19 +15,16 @@ export const revalidate = 60;
 export default function HomePage() {
   return (
     <>
-      <HeroSlider />
       <Hero />
-      <Suspense fallback={null}>
-        <FeaturedCategoriesLive />
-        <FeaturedProductsLive />
-        <LatestArticlesLive />
-      </Suspense>
+      <TrackingHero />
+      <HowItWorks />
+      <Services />
+      <TrackingPreview />
       <WhyChooseUs />
-      <CompanyOverview />
-      <ProductHighlights />
-      <Stats />
+      <Coverage />
+      <BusinessSolutions />
       <Testimonials />
-      <Newsletter />
+      <FAQ />
       <CTA />
     </>
   );
