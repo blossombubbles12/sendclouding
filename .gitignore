@@ -38,7 +38,6 @@ yarn-error.log*
 
 # payload
 /media
-/payload-types.ts
 /generated-schema.graphql
 
 # build helpers
