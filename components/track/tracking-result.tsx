@@ -52,11 +52,11 @@ function formatDateTime(value: string): string {
   });
 }
 
-function Field({ label, value }: { label: string; value: React.ReactNode }) {
+function MetaCell({ label, value }: { label: string; value: React.ReactNode }) {
   return (
-    <div className="flex items-start justify-between gap-4 py-2">
-      <dt className="shrink-0 text-xs font-medium uppercase tracking-wide text-muted-foreground">{label}</dt>
-      <dd className="text-right text-sm font-semibold text-foreground">{value}</dd>
+    <div className="bg-muted/40 p-4">
+      <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-muted-foreground">{label}</p>
+      <p className="mt-1 text-sm font-semibold text-foreground">{value}</p>
     </div>
   );
 }
@@ -161,20 +161,14 @@ export function TrackingResult({ result }: { result: PublicTrackingResult }) {
               </div>
             </div>
 
-            <dl className="mt-5 grid grid-cols-1 divide-y divide-border/60 sm:grid-cols-3 sm:divide-x sm:divide-y-0">
-              <div className="sm:px-4 sm:first:pl-0">
-                <Field label="Current location" value={result.currentLocation ?? "—"} />
-              </div>
-              <div className="sm:px-4">
-                <Field label="Delivery service" value={result.deliveryService ?? "—"} />
-              </div>
-              <div className="sm:px-4 sm:pr-0">
-                <Field
-                  label="Estimated delivery"
-                  value={result.estimatedDelivery ? formatDateTime(result.estimatedDelivery) : "—"}
-                />
-              </div>
-            </dl>
+            <div className="mt-5 grid grid-cols-1 gap-px overflow-hidden rounded-2xl bg-border/60 ring-1 ring-border/60 sm:grid-cols-3">
+              <MetaCell label="Current location" value={result.currentLocation ?? "—"} />
+              <MetaCell label="Delivery service" value={result.deliveryService ?? "—"} />
+              <MetaCell
+                label="Estimated delivery"
+                value={result.estimatedDelivery ? formatDateTime(result.estimatedDelivery) : "—"}
+              />
+            </div>
           </div>
         </div>
       </Reveal>
