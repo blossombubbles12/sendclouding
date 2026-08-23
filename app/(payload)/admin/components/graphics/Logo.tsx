@@ -1,12 +1,16 @@
 import React from "react";
+import { getSiteSettings, getLogoUrl, getSiteName } from "@/lib/get-globals";
 
 /**
- * Branded logo shown on the Payload login screen and other auth views.
- * Pure presentational server component — renders the site's actual static
- * logo asset (no Payload/DB call) so it always renders, even if the DB is
- * unreachable.
+ * Branded logo shown on the Payload login screen and admin header.
+ * Renders the logo uploaded in Site Settings (supports Vercel Blob CDN
+ * URLs), falling back to the static brand asset if unavailable.
  */
-export function Logo() {
+export async function Logo() {
+  const settings = await getSiteSettings();
+  const logoUrl = await getLogoUrl(settings);
+  const siteName = getSiteName(settings);
+
   return (
     <div
       style={{
@@ -16,7 +20,11 @@ export function Logo() {
       }}
     >
       {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src="/sendclouding-logo.svg" alt="Send Clouding" style={{ height: "40px", width: "auto" }} />
+      <img
+        src={logoUrl}
+        alt={siteName}
+        style={{ height: "40px", width: "auto", maxWidth: "220px", objectFit: "contain" }}
+      />
     </div>
   );
 }

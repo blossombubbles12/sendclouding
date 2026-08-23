@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { getSiteSettings, getLogoUrl, getSiteName } from "@/lib/get-globals";
 
 interface ShipmentDoc {
   id: number;
@@ -66,7 +67,10 @@ function statusLabel(status?: string): string {
   return labels[status ?? ""] ?? status ?? "—";
 }
 
-function buildDocumentsHtml(s: ShipmentDoc): string {
+function buildDocumentsHtml(
+  s: ShipmentDoc,
+  brand: { logoUrl: string; siteName: string }
+): string {
   const tn = s.trackingNumber ?? `#${s.id}`;
   const origin = loc(s.origin);
   const destination = loc(s.destination);
@@ -87,7 +91,8 @@ function buildDocumentsHtml(s: ShipmentDoc): string {
   .header { display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 3px solid ${NAVY}; padding-bottom: 24px; margin-bottom: 28px; }
   .brand { font-size: 26px; font-weight: 800; color: ${NAVY}; letter-spacing: -0.02em; }
   .brand span { color: ${SKY}; }
-  .brand-tag { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: ${SLATE}; margin-top: 4px; }
+  .brand-img { height: 48px; width: auto; max-width: 240px; object-fit: contain; }
+  .brand-tag { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: ${SLATE}; margin-top: 6px; }
   .doc-title { font-size: 24px; font-weight: 800; color: ${NAVY}; text-transform: uppercase; letter-spacing: 0.04em; }
   .status-pill { display: inline-block; margin-top: 8px; padding: 5px 12px; border-radius: 999px; background: ${AMBER}; color: #0F172A; font-size: 12px; font-weight: 700; }
   .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-bottom: 28px; }
@@ -112,7 +117,7 @@ function buildDocumentsHtml(s: ShipmentDoc): string {
 <div class="sheet">
   <div class="header">
     <div>
-      <div class="brand">Send <span>Clouding</span></div>
+      <div class="brand"><img src="${brand.logoUrl}" alt="${brand.siteName}" class="brand-img" /></div>
       <div class="brand-tag">Courier · Tracking · Logistics</div>
     </div>
     <div>
@@ -218,7 +223,11 @@ export async function GET(
       return NextResponse.json({ error: "Shipment not found" }, { status: 404 });
     }
 
-    const html = buildDocumentsHtml(shipment);
+    const settings = await getSiteSettings();
+    const html = buildDocumentsHtml(shipment, {
+      logoUrl: await getLogoUrl(settings),
+      siteName: getSiteName(settings),
+    });
     return new NextResponse(html, {
       headers: { "Content-Type": "text/html; charset=utf-8" },
     });
