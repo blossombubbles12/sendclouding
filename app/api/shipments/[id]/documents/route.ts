@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getPayload } from "payload";
 import config from "@payload-config";
+import bwipjs from "bwip-js";
 import { resolveMediaUrl } from "@/lib/get-globals";
 
 interface ShipmentDoc {
@@ -69,11 +70,34 @@ function statusLabel(status?: string): string {
   return labels[status ?? ""] ?? status ?? "—";
 }
 
+function generateBarcode(text: string): string | null {
+  try {
+    const toSVG = (bwipjs as unknown as { toSVG: (opts: Record<string, unknown>) => string }).toSVG;
+    return toSVG({
+      bcid: "code128",
+      text,
+      scale: 2,
+      height: 9,
+      includetext: true,
+      textxalign: "center",
+      textsize: 11,
+      paddingwidth: 6,
+      paddingheight: 4,
+    });
+  } catch {
+    return null;
+  }
+}
+
 function buildDocumentsHtml(
   s: ShipmentDoc,
   brand: { logoUrl: string; siteName: string }
 ): string {
   const tn = s.trackingNumber ?? `#${s.id}`;
+  const barcodeSvg = generateBarcode(tn);
+  const barcodeBlock = barcodeSvg
+    ? `<div class="barcode">${barcodeSvg}<p>${tn}</p></div>`
+    : `<div class="barcode"><p style="font-family:Menlo,Consolas,monospace;font-size:13px;font-weight:700;letter-spacing:0.06em;color:${NAVY};margin:0;">${tn}</p></div>`;
   const origin = loc(s.origin);
   const destination = loc(s.destination);
   const pkg = s.package ?? {};
@@ -109,6 +133,9 @@ function buildDocumentsHtml(
   .sign div { flex: 1; }
   .sign-line { border-top: 1px solid #CBD5E1; margin-top: 44px; padding-top: 6px; font-size: 11px; color: ${SLATE}; }
   .footer { margin-top: 28px; padding-top: 16px; border-top: 1px solid #E2E8F0; text-align: center; font-size: 11px; color: ${SLATE}; line-height: 1.6; }
+  .barcode { margin-top: 28px; padding: 16px; background: #fff; border: 1px solid #E2E8F0; border-radius: 10px; text-align: center; }
+  .barcode svg { display: block; margin: 0 auto; width: 100%; max-width: 320px; height: auto; }
+  .barcode p { margin: 10px 0 0; font-family: Menlo, Consolas, monospace; font-size: 13px; font-weight: 700; letter-spacing: 0.06em; color: ${NAVY}; }
   .no-print { max-width: 820px; margin: 0 auto 20px; text-align: right; }
   .no-print button { background: ${NAVY}; color: #fff; border: none; padding: 12px 26px; border-radius: 50px; font-weight: 700; font-size: 14px; cursor: pointer; }
   @media print { body { background: #fff; padding: 0; } .sheet { border: none; margin: 0; box-shadow: none; } .no-print { display: none; } .sheet:first-of-type { page-break-after: always; } }
@@ -149,6 +176,8 @@ function buildDocumentsHtml(
 
   <p style="margin-top:16px;font-size:12px;color:${SLATE};">Declared value for carriage: <strong>${money(pkg.declaredValue)}</strong> · Reference: ${pkg.referenceNumber || "—"} · Fragile: ${pkg.isFragile ? "Yes" : "No"}</p>
 
+  ${barcodeBlock}
+
   <div class="footer">
     <strong style="color:${NAVY};">Send Clouding</strong> — Courier &amp; Logistics · Amsterdam, Netherlands<br/>
     contact@sendclouding.com · This invoice was generated automatically for shipment ${tn}.
@@ -159,7 +188,7 @@ function buildDocumentsHtml(
 <div class="sheet">
   <div class="header">
     <div>
-      <div class="brand">Send <span>Clouding</span></div>
+      <div class="brand"><img src="${brand.logoUrl}" alt="${brand.siteName}" class="brand-img" /></div>
       <div class="brand-tag">Packing Slip</div>
     </div>
     <div>
@@ -194,6 +223,8 @@ function buildDocumentsHtml(
     <div><div class="sign-line">Shipper signature / date</div></div>
     <div><div class="sign-line">Carrier signature / date</div></div>
   </div>
+
+  ${barcodeBlock}
 
   <div class="footer">
     <strong style="color:${NAVY};">Send Clouding</strong> — Courier &amp; Logistics · contact@sendclouding.com · ${tn}
