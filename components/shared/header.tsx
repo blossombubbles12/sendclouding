@@ -186,7 +186,10 @@ export function Header({
                 {/* Services Mega Menu */}
                 {item.label === "Services" && (
                   <div
-                    className="absolute left-1/2 top-full z-50 -translate-x-1/2 pt-3"
+                    className={cn(
+                      "absolute left-1/2 top-full z-50 -translate-x-1/2 pt-3",
+                      megaOpen === "services" ? "pointer-events-auto" : "pointer-events-none"
+                    )}
                     onMouseEnter={() => setMegaOpen("services")}
                     onMouseLeave={() => setMegaOpen(null)}
                   >

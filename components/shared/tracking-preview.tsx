@@ -1,9 +1,9 @@
 "use client";
 
 import * as React from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { Package, Truck, MapPin, CheckCircle2, ArrowRight, Search } from "lucide-react";
-import { Section } from "@/components/layout/section";
 import { Container } from "@/components/layout/container";
 import { SectionHeading } from "@/components/shared/section-heading";
 import { Reveal } from "@/components/motion/reveal";
@@ -21,8 +21,26 @@ export function TrackingPreview() {
   const [trackingNumber, setTrackingNumber] = React.useState("");
 
   return (
-    <Section background="primary" spacing="lg" pattern="band" className="text-white">
-      <Container>
+    <section className="relative isolate overflow-hidden bg-primary text-white">
+      {/* Background image + navy overlay for readability */}
+      <div className="absolute inset-0 -z-10">
+        <Image
+          src="/about-hero.png"
+          alt="Logistics operations and parcel tracking"
+          fill
+          sizes="100vw"
+          className="object-cover object-center"
+        />
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(to right, rgba(2,6,23,0.94) 0%, rgba(15,23,42,0.88) 45%, rgba(15,23,42,0.72) 100%)",
+          }}
+        />
+      </div>
+
+      <Container className="py-20 sm:py-28 lg:py-32">
         <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
           <Reveal>
             <SectionHeading
@@ -115,6 +133,6 @@ export function TrackingPreview() {
           </Reveal>
         </div>
       </Container>
-    </Section>
+    </section>
   );
 }

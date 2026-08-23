@@ -81,38 +81,62 @@ export function TrackingHero() {
 
         <Reveal delay={150} className="relative">
           <div className="relative mx-auto aspect-[4/5] w-full max-w-md lg:max-w-lg">
-            {/* Main illustration */}
-            <div className="hover-lift absolute inset-0 overflow-hidden rounded-[2.5rem] shadow-2xl bg-gradient-to-br from-primary-50 via-secondary-50/30 to-accent-50/30">
-              <div className="absolute inset-0 flex items-center justify-center">
+            {/* Main illustration — dark gradient theme */}
+            <div className="hover-lift absolute inset-0 overflow-hidden rounded-[2.5rem] shadow-2xl bg-gradient-to-br from-primary-950 via-primary-900 to-primary-800 ring-1 ring-white/10">
+              {/* Decorative glows */}
+              <div aria-hidden="true" className="pointer-events-none absolute -right-20 -top-20 h-72 w-72 rounded-full bg-secondary/20 blur-3xl" />
+              <div aria-hidden="true" className="pointer-events-none absolute -bottom-24 -left-24 h-72 w-72 rounded-full bg-highlight/15 blur-3xl" />
+
+              {/* Pattern overlay — fine grid */}
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-0 opacity-20"
+                style={{
+                  backgroundImage:
+                    "linear-gradient(rgba(255,255,255,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.07) 1px, transparent 1px)",
+                  backgroundSize: "34px 34px",
+                }}
+              />
+              {/* Pattern overlay — dot matrix */}
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-0 opacity-25"
+                style={{
+                  backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.35) 1px, transparent 1.5px)",
+                  backgroundSize: "18px 18px",
+                }}
+              />
+
+              <div className="relative flex h-full items-center justify-center">
                 <div className="text-center p-8">
-                  <div className="mx-auto mb-6 flex h-24 w-24 items-center justify-center rounded-full bg-white/50 backdrop-blur-sm shadow-xl ring-1 ring-white/50">
+                  <div className="mx-auto mb-6 flex h-24 w-24 items-center justify-center rounded-full bg-white/10 shadow-xl ring-1 ring-white/15 backdrop-blur-sm">
                     <Package className="h-12 w-12 text-secondary" aria-hidden="true" />
                   </div>
                   <div className="space-y-3 text-center">
-                    <div className="flex items-center justify-center gap-3 text-sm font-medium text-foreground">
+                    <div className="flex items-center justify-center gap-3 text-sm font-medium">
                       <span className="flex items-center gap-1.5 rounded-full bg-emerald-100 px-3 py-1 text-emerald-700">
                         <CheckCircle2 className="h-3.5 w-3.5" aria-hidden="true" />
                         Picked Up
                       </span>
-                      <span className="text-muted-foreground">→</span>
+                      <span className="text-white/50">→</span>
                       <span className="flex items-center gap-1.5 rounded-full bg-sky-100 px-3 py-1 text-sky-700">
                         <Truck className="h-3.5 w-3.5" aria-hidden="true" />
                         In Transit
                       </span>
                     </div>
-                    <div className="flex items-center justify-center gap-3 text-sm font-medium text-foreground">
+                    <div className="flex items-center justify-center gap-3 text-sm font-medium">
                       <span className="flex items-center gap-1.5 rounded-full bg-orange-100 px-3 py-1 text-orange-700">
                         <MapPin className="h-3.5 w-3.5" aria-hidden="true" />
                         Out for Delivery
                       </span>
-                      <span className="text-muted-foreground">→</span>
+                      <span className="text-white/50">→</span>
                       <span className="flex items-center gap-1.5 rounded-full bg-emerald-100 px-3 py-1 text-emerald-700">
                         <ShieldCheck className="h-3.5 w-3.5" aria-hidden="true" />
                         Delivered
                       </span>
                     </div>
                   </div>
-                  <div className="mt-8 flex items-center justify-center gap-8 text-sm text-muted-foreground">
+                  <div className="mt-8 flex items-center justify-center gap-8 text-sm text-white/60">
                     <div className="text-center">
                       <p className="text-2xl font-bold text-secondary">2,847</p>
                       <p>Active Shipments</p>
@@ -122,25 +146,25 @@ export function TrackingHero() {
                       <p>On-Time Rate</p>
                     </div>
                     <div className="text-center">
-                      <p className="text-2xl font-bold text-primary">500+</p>
+                      <p className="text-2xl font-bold text-white">500+</p>
                       <p>Cities Covered</p>
                     </div>
                   </div>
                 </div>
               </div>
+            </div>
 
-              {/* Floating status badges */}
-              <div className="absolute -top-4 -right-4 animate-float-subtle">
-                <div className="glass rounded-2xl px-4 py-3 shadow-lg">
-                  <p className="text-lg font-bold text-secondary">SC-EU-8847291</p>
-                  <p className="text-caption text-muted-foreground">Out for Delivery · 2 stops away</p>
-                </div>
+            {/* Floating status badges — outside the clipped card so they align cleanly */}
+            <div className="absolute -top-4 -right-4 animate-float-subtle">
+              <div className="glass rounded-2xl px-4 py-3 shadow-lg">
+                <p className="text-lg font-bold text-secondary">SC-EU-8847291</p>
+                <p className="text-caption text-muted-foreground">Out for Delivery · 2 stops away</p>
               </div>
-              <div className="absolute -bottom-6 -left-6 animate-float-subtle" style={{ animationDelay: "2s" }}>
-                <div className="glass rounded-2xl px-4 py-3 shadow-lg">
-                  <p className="text-lg font-bold text-accent">Delivered</p>
-                  <p className="text-caption text-muted-foreground">Amsterdam → London · 2h 14m ago</p>
-                </div>
+            </div>
+            <div className="absolute -bottom-6 -left-6 animate-float-subtle" style={{ animationDelay: "2s" }}>
+              <div className="glass rounded-2xl px-4 py-3 shadow-lg">
+                <p className="text-lg font-bold text-accent">Delivered</p>
+                <p className="text-caption text-muted-foreground">Amsterdam → London · 2h 14m ago</p>
               </div>
             </div>
           </div>
