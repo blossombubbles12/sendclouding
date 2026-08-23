@@ -13,7 +13,6 @@ export const Shipments: CollectionConfig = {
   admin: {
     useAsTitle: "trackingNumber",
     group: "Send Clouding",
-    hidden: true,
     defaultColumns: ["trackingNumber", "recipient", "origin", "destination", "status", "estimatedDelivery", "createdAt"],
   },
   access: {

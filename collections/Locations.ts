@@ -10,7 +10,6 @@ export const Locations: CollectionConfig = {
   admin: {
     useAsTitle: "name",
     group: "Send Clouding",
-    hidden: true,
     defaultColumns: ["name", "type", "city", "country", "isActive"],
     description: "Hubs, depots, and pickup points across the delivery network.",
   },

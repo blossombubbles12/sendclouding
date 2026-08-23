@@ -5,7 +5,6 @@ export const ShippingMethods: CollectionConfig = {
   admin: {
     useAsTitle: "name",
     group: "Send Clouding",
-    hidden: true,
     defaultColumns: ["name", "baseFee", "estimatedDelivery", "isActive", "createdAt"],
   },
   access: {
