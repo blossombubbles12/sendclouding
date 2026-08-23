@@ -49,3 +49,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# local tooling / stray files (not part of the project)
+/pnpm-lock.yaml
+/pnpm-workspace.yaml
+/shipments-transcript-part.txt

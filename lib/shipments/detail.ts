@@ -34,7 +34,6 @@ export interface ShipmentDetail {
     isFragile?: boolean;
   };
   notes: string | null;
-  customer: number | null;
   createdAt: string;
   updatedAt: string;
   trackingEvents: TrackingEventItem[];
@@ -102,7 +101,6 @@ export async function getShipmentDetail(id: string | number): Promise<ShipmentDe
       recipient: typed.recipient ?? { name: "—", phone: "—" },
       package: typed.package ?? {},
       notes: typed.notes ?? null,
-      customer: typed.customer ?? null,
       createdAt: doc.createdAt,
       updatedAt: doc.updatedAt,
       trackingEvents,

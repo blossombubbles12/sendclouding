@@ -3,7 +3,7 @@
 import * as React from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { User, Package, MapPin, Heart, Settings, LogOut, ShoppingBag, ChevronRight, Loader2 } from "lucide-react";
+import { User, Settings, LogOut, ShoppingBag, ChevronRight, Loader2 } from "lucide-react";
 import { useAuth } from "@/providers/auth-provider";
 import { Container } from "@/components/layout/container";
 import { Separator } from "@/components/ui/separator";
@@ -12,9 +12,6 @@ import { cn } from "@/lib/utils";
 const navItems = [
   { label: "Dashboard", href: "/account", icon: ShoppingBag },
   { label: "My Profile", href: "/account/profile", icon: User },
-  { label: "My Orders", href: "/account/orders", icon: Package },
-  { label: "Saved Addresses", href: "/account/addresses", icon: MapPin },
-  { label: "Wishlist", href: "/account/wishlist", icon: Heart },
   { label: "Settings", href: "/account/settings", icon: Settings },
 ];
 

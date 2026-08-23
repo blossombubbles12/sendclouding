@@ -68,17 +68,11 @@ export interface Config {
   blocks: {};
   collections: {
     users: User;
-    products: Product;
-    categories: Category;
-    orders: Order;
-    customers: Customer;
+    'blog-categories': BlogCategory;
     media: Media;
     'contact-messages': ContactMessage;
     posts: Post;
     'shipping-methods': ShippingMethod;
-    'product-templates': ProductTemplate;
-    designs: Design;
-    'production-jobs': ProductionJob;
     shipments: Shipment;
     'tracking-events': TrackingEvent;
     locations: Location;
@@ -90,17 +84,11 @@ export interface Config {
   collectionsJoins: {};
   collectionsSelect: {
     users: UsersSelect<false> | UsersSelect<true>;
-    products: ProductsSelect<false> | ProductsSelect<true>;
-    categories: CategoriesSelect<false> | CategoriesSelect<true>;
-    orders: OrdersSelect<false> | OrdersSelect<true>;
-    customers: CustomersSelect<false> | CustomersSelect<true>;
+    'blog-categories': BlogCategoriesSelect<false> | BlogCategoriesSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     'contact-messages': ContactMessagesSelect<false> | ContactMessagesSelect<true>;
     posts: PostsSelect<false> | PostsSelect<true>;
     'shipping-methods': ShippingMethodsSelect<false> | ShippingMethodsSelect<true>;
-    'product-templates': ProductTemplatesSelect<false> | ProductTemplatesSelect<true>;
-    designs: DesignsSelect<false> | DesignsSelect<true>;
-    'production-jobs': ProductionJobsSelect<false> | ProductionJobsSelect<true>;
     shipments: ShipmentsSelect<false> | ShipmentsSelect<true>;
     'tracking-events': TrackingEventsSelect<false> | TrackingEventsSelect<true>;
     locations: LocationsSelect<false> | LocationsSelect<true>;
@@ -118,7 +106,6 @@ export interface Config {
     header: Header;
     footer: Footer;
     'seo-settings': SeoSetting;
-    'payment-settings': PaymentSetting;
     'shipping-settings': ShippingSetting;
   };
   globalsSelect: {
@@ -126,7 +113,6 @@ export interface Config {
     header: HeaderSelect<false> | HeaderSelect<true>;
     footer: FooterSelect<false> | FooterSelect<true>;
     'seo-settings': SeoSettingsSelect<false> | SeoSettingsSelect<true>;
-    'payment-settings': PaymentSettingsSelect<false> | PaymentSettingsSelect<true>;
     'shipping-settings': ShippingSettingsSelect<false> | ShippingSettingsSelect<true>;
   };
   locale: null;
@@ -187,6 +173,42 @@ export interface User {
     | null;
   password?: string | null;
   collection: 'users';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "blog-categories".
+ */
+export interface BlogCategory {
+  id: number;
+  name: string;
+  /**
+   * URL-friendly version of the name (auto-generated from name)
+   */
+  slug: string;
+  description?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  image?: (number | null) | Media;
+  featured?: boolean | null;
+  status: 'active' | 'inactive';
+  /**
+   * Lower numbers appear first
+   */
+  sortOrder?: number | null;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -833,7 +855,7 @@ export interface Post {
         id?: string | null;
       }[]
     | null;
-  category?: (number | null) | Category;
+  category?: (number | null) | BlogCategory;
   tags?:
     | {
         tag?: string | null;
@@ -1058,10 +1080,6 @@ export interface Shipment {
    * Auto-generated, human-readable identifier (e.g. SC-2026-000001).
    */
   trackingNumber: string;
-  /**
-   * Account holder this shipment belongs to, when applicable.
-   */
-  customer?: (number | null) | Customer;
   sender: {
     name: string;
     company?: string | null;
@@ -1192,22 +1210,6 @@ export interface PayloadLockedDocument {
         value: number | User;
       } | null)
     | ({
-        relationTo: 'products';
-        value: number | Product;
-      } | null)
-    | ({
-        relationTo: 'categories';
-        value: number | Category;
-      } | null)
-    | ({
-        relationTo: 'orders';
-        value: number | Order;
-      } | null)
-    | ({
-        relationTo: 'customers';
-        value: number | Customer;
-      } | null)
-    | ({
         relationTo: 'media';
         value: number | Media;
       } | null)
@@ -1222,18 +1224,6 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'shipping-methods';
         value: number | ShippingMethod;
-      } | null)
-    | ({
-        relationTo: 'product-templates';
-        value: number | ProductTemplate;
-      } | null)
-    | ({
-        relationTo: 'designs';
-        value: number | Design;
-      } | null)
-    | ({
-        relationTo: 'production-jobs';
-        value: number | ProductionJob;
       } | null)
     | ({
         relationTo: 'shipments';
@@ -1423,6 +1413,21 @@ export interface CategoriesSelect<T extends boolean = true> {
   description?: T;
   image?: T;
   parent?: T;
+  featured?: T;
+  status?: T;
+  sortOrder?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "blog-categories_select".
+ */
+export interface BlogCategoriesSelect<T extends boolean = true> {
+  name?: T;
+  slug?: T;
+  description?: T;
+  image?: T;
   featured?: T;
   status?: T;
   sortOrder?: T;
@@ -1829,7 +1834,6 @@ export interface ProductionJobsSelect<T extends boolean = true> {
  */
 export interface ShipmentsSelect<T extends boolean = true> {
   trackingNumber?: T;
-  customer?: T;
   sender?:
     | T
     | {
@@ -1977,7 +1981,7 @@ export interface Header {
   navItems: {
     label: string;
     /**
-     * Use / for root, e.g., /products, /about
+     * Use / for root, e.g., /ship, /about
      */
     link: string;
     type?: ('link' | 'dropdown') | null;

@@ -92,7 +92,7 @@ export const Posts: CollectionConfig = {
     {
       name: "category",
       type: "relationship",
-      relationTo: "categories",
+      relationTo: "blog-categories",
       hasMany: false,
       label: "Category",
     },

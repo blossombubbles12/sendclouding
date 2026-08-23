@@ -29,7 +29,7 @@ export const Header: GlobalConfig = {
           required: true,
           label: "Link",
           admin: {
-            description: "Use / for root, e.g., /products, /about",
+            description: "Use / for root, e.g., /ship, /about",
           },
         },
         {

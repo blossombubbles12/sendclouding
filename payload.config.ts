@@ -8,17 +8,11 @@ import { fileURLToPath } from "url";
 import sharp from "sharp";
 
 import { Users } from "./collections/Users";
-import { Products } from "./collections/Products";
-import { Categories } from "./collections/Categories";
+import { BlogCategories } from "./collections/BlogCategories";
 import { Posts } from "./collections/Posts";
-import { Orders } from "./collections/Orders";
-import { Customers } from "./collections/Customers";
 import { ContactMessages } from "./collections/ContactMessages";
 import { Media } from "./collections/Media";
 import { ShippingMethods } from "./collections/ShippingMethods";
-import { ProductTemplates } from "./collections/ProductTemplates";
-import { Designs } from "./collections/Designs";
-import { ProductionJobs } from "./collections/ProductionJobs";
 import { Shipments } from "./collections/Shipments";
 import { TrackingEvents } from "./collections/TrackingEvents";
 import { Locations } from "./collections/Locations";
@@ -26,7 +20,6 @@ import { SiteSettings } from "./globals/SiteSettings";
 import { Header } from "./globals/Header";
 import { Footer } from "./globals/Footer";
 import { SEOSettings } from "./globals/SEOSettings";
-import { PaymentSettings } from "./globals/PaymentSettings";
 import { ShippingSettings } from "./globals/ShippingSettings";
 
 const filename = fileURLToPath(import.meta.url);
@@ -68,8 +61,8 @@ export default buildConfig({
       baseDir: path.resolve(dirname, "app/(payload)/admin"),
     },
   },
-  collections: [Users, Products, Categories, Orders, Customers, Media, ContactMessages, Posts, ShippingMethods, ProductTemplates, Designs, ProductionJobs, Shipments, TrackingEvents, Locations],
-  globals: [SiteSettings, Header, Footer, SEOSettings, PaymentSettings, ShippingSettings],
+  collections: [Users, BlogCategories, Media, ContactMessages, Posts, ShippingMethods, Shipments, TrackingEvents, Locations],
+  globals: [SiteSettings, Header, Footer, SEOSettings, ShippingSettings],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || "",
   plugins: [

@@ -15,7 +15,6 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { CartToggle } from "@/components/shared/mini-cart";
 import { useAuth } from "@/providers/auth-provider";
 
 const primaryNav = [
@@ -262,7 +261,6 @@ export function Header({
           >
             <User className="h-5 w-5" />
           </Link>
-          <CartToggle />
           <button
             type="button"
             aria-label="Toggle menu"

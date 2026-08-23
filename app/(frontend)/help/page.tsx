@@ -92,7 +92,6 @@ const categories: HelpCategory[] = [
     description: "Manage your profile, addresses, preferences and account security.",
     links: [
       { label: "Manage your account", href: "/account" },
-      { label: "Address book", href: "/account/addresses" },
       { label: "Password & security", href: "/account/settings" },
     ],
   },

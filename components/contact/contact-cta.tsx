@@ -14,16 +14,16 @@ export function ContactCTA() {
         />
         <div className="relative">
           <h2 className="text-section-heading text-white">
-            Prefer to explore our products first?
+            Ready to ship with Send Clouding?
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-white/80">
-            Browse our range of premium signage, business cards, and branded
-            merchandise, delivered to your door.
+            Get a custom quote for your shipping volumes or track an existing
+            shipment in real time — our team is here to help.
           </p>
           <div className="mt-9 flex flex-wrap items-center justify-center gap-4">
             <Button size="lg" className="bg-secondary text-white hover:bg-secondary-600" asChild>
-              <Link href="/products">
-                Start Designing <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
+              <Link href="/quote">
+                Get a Quote <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
               </Link>
             </Button>
             <Button
@@ -32,7 +32,7 @@ export function ContactCTA() {
               className="border-white/30 bg-transparent text-white hover:bg-white/10"
               asChild
             >
-              <Link href="/about">Our Story</Link>
+              <Link href="/track">Track a Shipment</Link>
             </Button>
           </div>
         </div>

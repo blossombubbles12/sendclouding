@@ -3,7 +3,6 @@ import type { Metadata } from "next";
 import { AnnouncementBar } from "@/components/shared/announcement-bar";
 import { Header } from "@/components/shared/header";
 import { Footer } from "@/components/shared/footer";
-import { MiniCart } from "@/components/shared/mini-cart";
 import { RouteLoadingBar } from "@/components/shared/route-loading-bar";
 import { AppProviders } from "@/providers";
 import { getSiteSettings, getSiteName, getFaviconUrl, getLogoUrl, getLogoAlt } from "@/lib/get-globals";
@@ -68,7 +67,6 @@ export default async function FrontendLayout({
           socialLinks={siteSettings.socialLinks as Record<string, string> | null}
         />
       </div>
-      <MiniCart />
     </AppProviders>
   );
 }

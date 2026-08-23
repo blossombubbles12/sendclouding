@@ -13,6 +13,7 @@ export const Shipments: CollectionConfig = {
   admin: {
     useAsTitle: "trackingNumber",
     group: "Send Clouding",
+    hidden: true,
     defaultColumns: ["trackingNumber", "recipient", "origin", "destination", "status", "estimatedDelivery", "createdAt"],
   },
   access: {
@@ -91,16 +92,6 @@ export const Shipments: CollectionConfig = {
         return /^SC-\d{4}-\d{6}$/.test(value)
           ? true
           : "Tracking number must follow the format SC-YYYY-XXXXXX.";
-      },
-    },
-    {
-      name: "customer",
-      type: "relationship",
-      relationTo: "customers",
-      index: true,
-      label: "Customer",
-      admin: {
-        description: "Account holder this shipment belongs to, when applicable.",
       },
     },
     {

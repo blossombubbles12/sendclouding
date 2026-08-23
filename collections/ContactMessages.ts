@@ -4,7 +4,7 @@ export const ContactMessages: CollectionConfig = {
   slug: "contact-messages",
   admin: {
     useAsTitle: "subject",
-    group: "Commerce",
+    group: "Content",
     defaultColumns: ["name", "email", "subject", "status", "createdAt"],
   },
   access: {

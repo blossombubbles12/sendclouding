@@ -10,6 +10,7 @@ export const TrackingEvents: CollectionConfig = {
   admin: {
     useAsTitle: "description",
     group: "Send Clouding",
+    hidden: true,
     defaultColumns: ["shipment", "status", "dateTime", "location", "description"],
     description: "Historical journey milestones for shipments. Created automatically from status changes.",
   },

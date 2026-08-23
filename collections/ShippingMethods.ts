@@ -4,7 +4,8 @@ export const ShippingMethods: CollectionConfig = {
   slug: "shipping-methods",
   admin: {
     useAsTitle: "name",
-    group: "Commerce",
+    group: "Send Clouding",
+    hidden: true,
     defaultColumns: ["name", "baseFee", "estimatedDelivery", "isActive", "createdAt"],
   },
   access: {

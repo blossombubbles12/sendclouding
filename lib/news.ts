@@ -277,7 +277,7 @@ export async function getNewsCategories(): Promise<CategoryWithCount[]> {
 
   const [categories, posts] = await Promise.all([
     payload.find({
-      collection: "categories",
+      collection: "blog-categories",
       where: { status: { equals: "active" } },
       limit: 50,
       depth: 1,

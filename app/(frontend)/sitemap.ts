@@ -14,7 +14,6 @@ const staticRoutes = [
   "/terms",
   "/shipping",
   "/refund-policy",
-  "/products",
   "/news",
 ];
 

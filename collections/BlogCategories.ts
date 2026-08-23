@@ -1,10 +1,10 @@
 import { CollectionConfig } from "payload";
 
-export const Categories: CollectionConfig = {
-  slug: "categories",
+export const BlogCategories: CollectionConfig = {
+  slug: "blog-categories",
   admin: {
     useAsTitle: "name",
-    group: "Catalog",
+    group: "News & Blog",
   },
   access: {
     read: () => true,
@@ -36,15 +36,6 @@ export const Categories: CollectionConfig = {
       type: "upload",
       relationTo: "media",
       label: "Category Image",
-    },
-    {
-      name: "parent",
-      type: "relationship",
-      relationTo: "categories",
-      label: "Parent Category",
-      admin: {
-        description: "Optional parent category for hierarchical structure",
-      },
     },
     {
       name: "featured",
