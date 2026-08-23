@@ -1,5 +1,6 @@
 import { getPayload } from "payload";
 import config from "@payload-config";
+import bwipjs from "bwip-js";
 
 export interface PublicTrackingEvent {
   id: number;
@@ -7,6 +8,27 @@ export interface PublicTrackingEvent {
   dateTime: string;
   location: string | null;
   description: string;
+}
+
+export interface PublicParty {
+  name: string;
+  company?: string;
+  phone?: string;
+  email?: string;
+}
+
+export interface PublicPackageSummary {
+  description?: string;
+  content?: string;
+  quantity?: number;
+  weight?: number;
+  weightUnit?: string;
+  length?: number;
+  width?: number;
+  height?: number;
+  declaredValue?: number;
+  referenceNumber?: string;
+  isFragile?: boolean;
 }
 
 export interface PublicTrackingResult {
@@ -18,13 +40,10 @@ export interface PublicTrackingResult {
   currentLocation: string | null;
   deliveryService: string | null;
   estimatedDelivery: string | null;
-  recipientName: string;
-  packageSummary: {
-    description?: string;
-    weight?: number;
-    weightUnit?: string;
-    quantity?: number;
-  };
+  sender: PublicParty;
+  recipient: PublicParty;
+  packageSummary: PublicPackageSummary;
+  barcodeSvg: string | null;
   events: PublicTrackingEvent[];
 }
 
@@ -35,6 +54,25 @@ function groupValue(value: unknown): string | null {
     return String((value as { name: unknown }).name);
   }
   return null;
+}
+
+function generateBarcode(text: string): string | null {
+  try {
+    const toSVG = (bwipjs as unknown as { toSVG: (opts: Record<string, unknown>) => string }).toSVG;
+    return toSVG({
+      bcid: "code128",
+      text,
+      scale: 2,
+      height: 10,
+      includetext: true,
+      textxalign: "center",
+      textsize: 11,
+      paddingwidth: 6,
+      paddingheight: 4,
+    });
+  } catch {
+    return null;
+  }
 }
 
 export async function lookupShipmentByTrackingNumber(
@@ -56,6 +94,17 @@ export async function lookupShipmentByTrackingNumber(
     const doc = found.docs[0];
     if (!doc) return null;
 
+    const raw = doc as unknown as {
+      trackingNumber?: string;
+      status?: string;
+      sender?: PublicParty;
+      recipient?: PublicParty;
+      package?: Partial<PublicPackageSummary>;
+      estimatedDelivery?: string;
+    };
+
+    const trackingNumber = raw.trackingNumber ?? tn;
+
     const eventsRes = await payload.find({
       collection: "tracking-events",
       where: { shipment: { equals: doc.id } },
@@ -72,24 +121,43 @@ export async function lookupShipmentByTrackingNumber(
       description: (e as { description?: string }).description ?? "",
     }));
 
-    const pkg = (doc as { package?: { description?: string; weight?: number; weightUnit?: string; quantity?: number } }).package;
+    const pkg = raw.package ?? {};
 
     return {
       id: doc.id,
-      trackingNumber: (doc as { trackingNumber?: string }).trackingNumber ?? tn,
-      status: (doc as { status?: string }).status ?? "created",
+      trackingNumber,
+      status: raw.status ?? "created",
       origin: groupValue((doc as { origin?: unknown }).origin),
       destination: groupValue((doc as { destination?: unknown }).destination),
       currentLocation: groupValue((doc as { currentLocation?: unknown }).currentLocation),
       deliveryService: groupValue((doc as { deliveryService?: unknown }).deliveryService),
-      estimatedDelivery: (doc as { estimatedDelivery?: string }).estimatedDelivery ?? null,
-      recipientName: (doc as { recipient?: { name?: string } }).recipient?.name ?? "",
-      packageSummary: {
-        description: pkg?.description,
-        weight: pkg?.weight,
-        weightUnit: pkg?.weightUnit,
-        quantity: pkg?.quantity,
+      estimatedDelivery: raw.estimatedDelivery ?? null,
+      sender: {
+        name: raw.sender?.name ?? "",
+        company: raw.sender?.company,
+        phone: raw.sender?.phone,
+        email: raw.sender?.email,
       },
+      recipient: {
+        name: raw.recipient?.name ?? "",
+        company: raw.recipient?.company,
+        phone: raw.recipient?.phone,
+        email: raw.recipient?.email,
+      },
+      packageSummary: {
+        description: pkg.description,
+        content: pkg.content,
+        quantity: pkg.quantity,
+        weight: pkg.weight,
+        weightUnit: pkg.weightUnit,
+        length: pkg.length,
+        width: pkg.width,
+        height: pkg.height,
+        declaredValue: pkg.declaredValue,
+        referenceNumber: pkg.referenceNumber,
+        isFragile: pkg.isFragile,
+      },
+      barcodeSvg: generateBarcode(trackingNumber),
       events,
     };
   } catch {
