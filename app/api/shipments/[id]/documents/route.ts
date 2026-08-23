@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getSiteSettings, getLogoUrl, getSiteName } from "@/lib/get-globals";
+import { getPayload } from "payload";
+import config from "@payload-config";
+import { resolveMediaUrl } from "@/lib/get-globals";
 
 interface ShipmentDoc {
   id: number;
@@ -205,33 +207,39 @@ export async function GET(
   { params }: { params: Promise<{ id: string }> }
 ): Promise<NextResponse> {
   const { id } = await params;
-  if (!id) {
+  const shipmentId = Number(id);
+  if (!id || !Number.isInteger(shipmentId)) {
     return NextResponse.json({ error: "Missing shipment id" }, { status: 400 });
   }
 
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
-
   try {
-    const res = await fetch(`${baseUrl}/api/shipments/${id}?depth=2`, {
-      cache: "no-store",
+    const payload = await getPayload({ config });
+
+    const shipment = await payload.findByID({
+      collection: "shipments",
+      id: shipmentId,
+      depth: 2,
     });
-    if (!res.ok) {
-      return NextResponse.json({ error: "Shipment not found" }, { status: 404 });
-    }
-    const shipment = (await res.json()) as ShipmentDoc;
-    if (!shipment || !shipment.id) {
+    if (!shipment) {
       return NextResponse.json({ error: "Shipment not found" }, { status: 404 });
     }
 
-    const settings = await getSiteSettings();
-    const html = buildDocumentsHtml(shipment, {
-      logoUrl: await getLogoUrl(settings),
-      siteName: getSiteName(settings),
+    const settings = await payload.findGlobal({
+      slug: "site-settings",
+      depth: 1,
     });
+    const settingsAny = settings as { logo?: unknown; siteName?: string };
+    const logoUrl =
+      (await resolveMediaUrl(settingsAny.logo as Parameters<typeof resolveMediaUrl>[0])) ??
+      "/sendclouding-logo.svg";
+    const siteName = settingsAny.siteName ?? "Send Clouding";
+
+    const html = buildDocumentsHtml(shipment as unknown as ShipmentDoc, { logoUrl, siteName });
     return new NextResponse(html, {
       headers: { "Content-Type": "text/html; charset=utf-8" },
     });
-  } catch {
+  } catch (err) {
+    console.error("[documents] failed to generate documents:", err);
     return NextResponse.json({ error: "Failed to generate documents" }, { status: 500 });
   }
 }

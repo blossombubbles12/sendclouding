@@ -116,20 +116,48 @@ export function TrackingResult({ result }: { result: PublicTrackingResult }) {
             </div>
 
             {/* Route */}
-            <div className="mt-7 flex items-center justify-between rounded-2xl bg-muted/40 px-4 py-5 ring-1 ring-border/60">
-              <div className="text-center">
-                <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-muted-foreground">Origin</p>
-                <p className="mt-1 font-semibold text-foreground">{result.origin ?? "—"}</p>
-              </div>
-              <div className="flex flex-1 items-center justify-center px-4">
-                <div className="relative w-full max-w-[180px]">
+            <div className="mt-7 rounded-2xl bg-muted/40 px-4 py-5 ring-1 ring-border/60">
+              {/* Desktop — horizontal */}
+              <div className="hidden items-center justify-between gap-4 sm:flex">
+                <div className="flex-1 text-center">
+                  <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-muted-foreground">Origin</p>
+                  <p className="mt-1 font-semibold text-foreground">{result.origin ?? "—"}</p>
+                </div>
+                <div className="relative w-20 shrink-0">
                   <div className="absolute left-0 right-0 top-1/2 h-px bg-border" />
                   <Truck className="relative mx-auto h-5 w-5 text-secondary" aria-hidden="true" />
                 </div>
+                <div className="flex-1 text-center">
+                  <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-muted-foreground">Destination</p>
+                  <p className="mt-1 font-semibold text-foreground">{result.destination ?? "—"}</p>
+                </div>
               </div>
-              <div className="text-center">
-                <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-muted-foreground">Destination</p>
-                <p className="mt-1 font-semibold text-foreground">{result.destination ?? "—"}</p>
+
+              {/* Mobile — stacked */}
+              <div className="sm:hidden">
+                <div className="flex items-center gap-3">
+                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-secondary/10 text-secondary">
+                    <MapPin className="h-4 w-4" aria-hidden="true" />
+                  </span>
+                  <div className="min-w-0">
+                    <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-muted-foreground">Origin</p>
+                    <p className="truncate font-semibold text-foreground">{result.origin ?? "—"}</p>
+                  </div>
+                </div>
+                <div className="my-3 flex items-center gap-3">
+                  <span className="h-px flex-1 bg-border" />
+                  <Truck className="h-5 w-5 text-secondary" aria-hidden="true" />
+                  <span className="h-px flex-1 bg-border" />
+                </div>
+                <div className="flex items-center gap-3">
+                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-accent/10 text-accent">
+                    <MapPin className="h-4 w-4" aria-hidden="true" />
+                  </span>
+                  <div className="min-w-0">
+                    <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-muted-foreground">Destination</p>
+                    <p className="truncate font-semibold text-foreground">{result.destination ?? "—"}</p>
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -211,7 +239,7 @@ export function TrackingResult({ result }: { result: PublicTrackingResult }) {
             <div className="mt-4 flex flex-col items-center gap-3 rounded-[1.25rem] bg-white p-6 ring-1 ring-border/60">
               {result.barcodeSvg ? (
                 <div
-                  className="[&_svg]:h-auto [&_svg]:w-full max-w-[320px]"
+                  className="[&_svg]:h-auto [&_svg]:w-full w-full max-w-[320px]"
                   dangerouslySetInnerHTML={{ __html: result.barcodeSvg }}
                 />
               ) : (
