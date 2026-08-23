@@ -22,6 +22,7 @@ import { UnderlineFeatureClient as UnderlineFeatureClient_e70f5e05f09f93e00b997e
 import { BoldFeatureClient as BoldFeatureClient_e70f5e05f09f93e00b997edb1ef0c864 } from '@payloadcms/richtext-lexical/client'
 import { ItalicFeatureClient as ItalicFeatureClient_e70f5e05f09f93e00b997edb1ef0c864 } from '@payloadcms/richtext-lexical/client'
 import { StatusBadge as StatusBadge_d165e26876ba3b6c4209bd1e6d3f34a6 } from './/components/StatusBadge'
+import { ShipmentDocumentsButton as ShipmentDocumentsButton_1a2b3c4d5e6f7g8h9i0j } from './/components/ShipmentDocumentsButton'
 import { Icon as Icon_c6286fbc7f62f2ce3ef9c604e9c02147 } from './/components/graphics/Icon'
 import { Logo as Logo_e577ad08317d2e8977edf3e679038fc8 } from './/components/graphics/Logo'
 import { default as default_90ce34a83149be155a0629979d40efd0 } from './/components/dashboard/LogisticsDashboard'
@@ -55,6 +56,7 @@ export const importMap = {
   "@payloadcms/richtext-lexical/client#BoldFeatureClient": BoldFeatureClient_e70f5e05f09f93e00b997edb1ef0c864,
   "@payloadcms/richtext-lexical/client#ItalicFeatureClient": ItalicFeatureClient_e70f5e05f09f93e00b997edb1ef0c864,
   "/components/StatusBadge#StatusBadge": StatusBadge_d165e26876ba3b6c4209bd1e6d3f34a6,
+  "/components/ShipmentDocumentsButton#ShipmentDocumentsButton": ShipmentDocumentsButton_1a2b3c4d5e6f7g8h9i0j,
   "/components/graphics/Icon#Icon": Icon_c6286fbc7f62f2ce3ef9c604e9c02147,
   "/components/graphics/Logo#Logo": Logo_e577ad08317d2e8977edf3e679038fc8,
   "/components/dashboard/LogisticsDashboard#default": default_90ce34a83149be155a0629979d40efd0,

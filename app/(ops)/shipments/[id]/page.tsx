@@ -71,9 +71,19 @@ export default async function ShipmentDetailPage({
               {getShipmentStatusLabel(shipment.status)}
             </span>
           </div>
-          <Link href={`/ops/shipments/${shipment.id}/edit`} className="inline-flex h-10 items-center justify-center rounded-xl border border-slate-200 bg-white px-5 text-sm font-medium text-slate-700 shadow-sm hover:bg-slate-50">
-            Edit Shipment
-          </Link>
+          <div className="flex items-center gap-2">
+            <a
+              href={`/api/shipments/${shipment.id}/documents`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex h-10 items-center justify-center rounded-xl bg-primary px-5 text-sm font-medium text-white shadow-sm hover:bg-primary-900"
+            >
+              Invoice & Packing Slip
+            </a>
+            <Link href={`/ops/shipments/${shipment.id}/edit`} className="inline-flex h-10 items-center justify-center rounded-xl border border-slate-200 bg-white px-5 text-sm font-medium text-slate-700 shadow-sm hover:bg-slate-50">
+              Edit Shipment
+            </Link>
+          </div>
         </div>
         <p className="mt-1 text-sm text-slate-500">
           Created {formatDateTime(shipment.createdAt)} · Updated {formatDateTime(shipment.updatedAt)}

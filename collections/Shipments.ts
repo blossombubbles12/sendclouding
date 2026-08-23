@@ -3,6 +3,7 @@ import { readPublic, staffWrite } from "@/lib/shipments/access";
 import { createTrackingEvent, getLatestEventStatus, toId } from "@/lib/shipments/events";
 import { getShipmentStatusLabel } from "@/lib/shipments/statuses";
 import { generateTrackingNumber } from "@/lib/shipments/tracking-number";
+import { sendShipmentNotification } from "@/lib/shipments/notifications";
 
 export const Shipments: CollectionConfig = {
   slug: "shipments",
@@ -14,6 +15,11 @@ export const Shipments: CollectionConfig = {
     useAsTitle: "trackingNumber",
     group: "Send Clouding",
     defaultColumns: ["trackingNumber", "recipient", "origin", "destination", "status", "estimatedDelivery", "createdAt"],
+    components: {
+      edit: {
+        beforeDocumentControls: ["/components/ShipmentDocumentsButton#ShipmentDocumentsButton"],
+      },
+    },
   },
   access: {
     read: readPublic,
@@ -47,6 +53,9 @@ export const Shipments: CollectionConfig = {
               location: toId(doc.currentLocation ?? doc.origin),
               description: `Shipment created. Tracking number: ${doc.trackingNumber}.`,
             });
+
+            // Notify the recipient that their shipment is on the way.
+            await sendShipmentNotification(req, doc as Record<string, unknown>);
             return;
           }
 
@@ -65,6 +74,9 @@ export const Shipments: CollectionConfig = {
                   description: `Status updated to ${getShipmentStatusLabel(doc.status)}.`,
                 });
               }
+
+              // Notify the recipient of the status change.
+              await sendShipmentNotification(req, doc as Record<string, unknown>);
             }
           }
         } catch (err) {
@@ -88,9 +100,9 @@ export const Shipments: CollectionConfig = {
       },
       validate: (value?: string | null) => {
         if (!value) return true;
-        return /^SC-\d{4}-\d{6}$/.test(value)
+        return /^SC-\d{4}-\d{6,}$/.test(value)
           ? true
-          : "Tracking number must follow the format SC-YYYY-XXXXXX.";
+          : "Tracking number must follow the format SC-YYYY-######.";
       },
     },
     {
